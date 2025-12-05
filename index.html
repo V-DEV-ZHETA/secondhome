@@ -3,1117 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Second Home - Kamus Kopi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Second Home - Kamus Kopi Anda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABEL WARNA & GLOBAL --- */
+        :root {
+            --primary-dark: #151515;
+            --accent-red: #A63D40;
+            --accent-gold: #E9B872;
+            --light-gold: #f5d4a1;
+            --text-light: #f4f4f4;
+            --bg-card: #2c2c2c;
+            --bg-section: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        /* --- HEADER & NAV BAR BARU --- */
+.main-header {
+    background-color: rgba(21, 21, 21, 0.85);
+    padding: 0.8rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+/* Layout container header */
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Logo */
+.logo {
+    color: var(--accent-gold);
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Nav wrapper */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+/* Link tampilan rapi */
+.main-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    transition: all .25s ease;
+    font-size: 0.95rem;
+}
+
+/* Hover & active state */
+.main-nav a:hover,
+.main-nav a.active {
+    background-color: var(--accent-red);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(166, 61, 64, 0.4);
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+
+    .main-nav a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+        /* --- PAGE WRAPPER --- */
+        #app-content {
+            margin-top: 80px;
+        }
+
+        .page { display: none; padding: 2rem 0; }
+        .active-page { display: block; }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070')
+            no-repeat center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 6rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            border: none;
+        }
+
+        /* --- QUICK CARD --- */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .quick-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-light);
+            border: 1px solid transparent;
+            transition: .3s;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+        }
+
+    </style>
 </head>
-<body class="bg-[#FBF6EF] text-[#3E2723]">
-    <header class="sticky top-0 z-50 bg-[#DCE0D9] shadow-md">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-coffee text-2xl text-[#5D4037]"></i>
-                    <h1 class="text-xl md:text-2xl font-bold text-[#3E2723]">Second Home</h1>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden">
-                    <i class="fas fa-bars text-xl text-[#3E2723]"></i>
-                </button>
-                <nav id="main-nav" class="hidden md:flex space-x-6">
-                    <a href="#beranda" class="nav-link hover:text-[#8D6E63] transition-colors">Beranda</a>
-                    <a href="#kamus-kopi" class="nav-link hover:text-[#8D6E63] transition-colors">Kamus Kopi</a>
-                    <a href="#jenis-biji" class="nav-link hover:text-[#8D6E63] transition-colors">Jenis Biji Kopi</a>
-                    <a href="#proses-pengolahan" class="nav-link hover:text-[#8D6E63] transition-colors">Proses Pengolahan</a>
-                    <a href="#metode-roasting" class="nav-link hover:text-[#8D6E63] transition-colors">Metode Roasting</a>
-                    <a href="#cara-pembuatan" class="nav-link hover:text-[#8D6E63] transition-colors">Cara Pembuatan Kopi</a>
-                    <a href="#minuman-kopi" class="nav-link hover:text-[#8D6E63] transition-colors">Minuman Kopi</a>
-                    <a href="#artikel" class="nav-link hover:text-[#8D6E63] transition-colors">Artikel</a>
-                    <a href="#tentang" class="nav-link hover:text-[#8D6E63] transition-colors">Tentang</a>
-                </nav>
-            </div>
+<body>
 
-            <nav id="mobile-nav" class="hidden mt-4 pb-4 space-y-2">
-                <a href="#beranda" class="block py-2 hover:text-[#8D6E63] transition-colors">Beranda</a>
-                <a href="#kamus-kopi" class="block py-2 hover:text-[#8D6E63] transition-colors">Kamus Kopi</a>
-                <a href="#jenis-biji" class="block py-2 hover:text-[#8D6E63] transition-colors">Jenis Biji Kopi</a>
-                <a href="#proses-pengolahan" class="block py-2 hover:text-[#8D6E63] transition-colors">Proses Pengolahan</a>
-                <a href="#metode-roasting" class="block py-2 hover:text-[#8D6E63] transition-colors">Metode Roasting</a>
-                <a href="#cara-pembuatan" class="block py-2 hover:text-[#8D6E63] transition-colors">Cara Pembuatan Kopi</a>
-                <a href="#minuman-kopi" class="block py-2 hover:text-[#8D6E63] transition-colors">Minuman Kopi</a>
-                <a href="#artikel" class="block py-2 hover:text-[#8D6E63] transition-colors">Artikel</a>
-                <a href="#tentang" class="block py-2 hover:text-[#8D6E63] transition-colors">Tentang</a>
-            </nav>
-        </div>
-    </header>
+<header class="main-header">
+    <div class="container">
+        <h1 class="logo">Second Home</h1>
+        <nav class="main-nav">
+            <ul>
+                <!-- <li><a href="#" data-target="beranda-page" class="nav-link active">Beranda</a></li> -->
+                <li><a href="#" data-target="kamus-page" class="nav-link">Kamus Kopi</a></li>
+                <li><a href="#" data-target="biji-page" class="nav-link">Jenis Biji Kopi</a></li>
+                <li><a href="#" data-target="proses-page" class="nav-link">Proses Pengolahan</a></li>
+                <!-- <li><a href="#" data-target="roasting-page" class="nav-link">Metode Roasting</a></li>
+                <li><a href="#" data-target="seduh-page" class="nav-link">Cara Pembuatan Kopi</a></li>
+                <li><a href="#" data-target="minuman-page" class="nav-link">Minuman Kopi</a></li>
+                <li><a href="#" data-target="artikel-page" class="nav-link">Artikel / Blog</a></li>
+                <li><a href="#" data-target="tentang-page" class="nav-link">Tentang & Kontak</a></li> -->
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <main>
-        <section id="beranda" class="section">
-            <div class="container mx-auto px-4 py-12">
-                <div class="relative rounded-lg overflow-hidden mb-12">
-                    <img src="https://picsum.photos/seed/coffee-hero/1200/600.jpg" alt="Coffee Hero" class="w-full h-64 md:h-96 object-cover">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <div class="text-center text-white px-4">
-                            <h2 class="text-3xl md:text-5xl font-bold mb-4">Kamus Kopi Second Home</h2>
-                            <p class="text-lg md:text-xl mb-6">Panduan lengkap dunia kopi untuk pemula dan pecinta kopi</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <a href="#jenis-biji" class="bg-[#EAD7C3] rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-                        <i class="fas fa-seedling text-4xl text-[#5D4037] mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Jenis Biji Kopi</h3>
-                        <p>Pelajari berbagai jenis biji kopi dan karakteristiknya</p>
-                    </a>
-                    <a href="#kamus-kopi" class="bg-[#EAD7C3] rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-                        <i class="fas fa-book text-4xl text-[#5D4037] mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Kamus Kopi</h3>
-                        <p>Temukan istilah-istilah kopi dari A-Z</p>
-                    </a>
-                    <a href="#cara-pembuatan" class="bg-[#EAD7C3] rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-                        <i class="fas fa-mug-hot text-4xl text-[#5D4037] mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Metode Penyeduhan</h3>
-                        <p>Pelajari berbagai cara menyeduh kopi</p>
-                    </a>
-                </div>
-
-
-                <div class="mb-12">
-                    <h3 class="text-2xl font-bold mb-6">Konten Terbaru</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                            <img src="https://picsum.photos/seed/coffee-article1/400/250.jpg" alt="Coffee Article" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h4 class="font-bold mb-2">Tips Memilih Biji Kopi Sesuai Selera</h4>
-                                <p class="text-sm text-gray-600 mb-2">Diterbitkan: 15 Juni 2023</p>
-                                <p class="text-sm">Pelajari cara memilih biji kopi yang sesuai dengan preferensi rasa Anda...</p>
-                            </div>
-                        </article>
-                        <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                            <img src="https://picsum.photos/seed/coffee-article2/400/250.jpg" alt="Coffee Article" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h4 class="font-bold mb-2">Sejarah Kopi di Indonesia</h4>
-                                <p class="text-sm text-gray-600 mb-2">Diterbitkan: 10 Juni 2023</p>
-                                <p class="text-sm">Menelusuri perjalanan kopi dari masuknya ke Indonesia hingga menjadi komoditas ekspor...</p>
-                            </div>
-                        </article>
-                        <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                            <img src="https://picsum.photos/seed/coffee-article3/400/250.jpg" alt="Coffee Article" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h4 class="font-bold mb-2">Tren Metode Seduh Kopi 2023</h4>
-                                <p class="text-sm text-gray-600 mb-2">Diterbitkan: 5 Juni 2023</p>
-                                <p class="text-sm">Temukan metode seduh kopi yang sedang populer tahun ini...</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="kamus-kopi" class="section bg-[#EAD7C3]">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Kamus Kopi (A-Z)</h2>
-                <div class="max-w-md mx-auto mb-8">
-                    <div class="relative">
-                        <input type="text" id="glossary-search" placeholder="Cari istilah kopi..." class="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:border-[#5D4037]">
-                        <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
-                    </div>
-                </div>
-                <div class="flex flex-wrap justify-center gap-2 mb-8">
-                    <button class="filter-btn px-4 py-2 bg-[#DCE0D9] rounded-full hover:bg-[#5D4037] hover:text-white transition-colors" data-filter="all">Semua</button>
-                    <button class="filter-btn px-4 py-2 bg-[#DCE0D9] rounded-full hover:bg-[#5D4037] hover:text-white transition-colors" data-filter="biji">Jenis Biji</button>
-                    <button class="filter-btn px-4 py-2 bg-[#DCE0D9] rounded-full hover:bg-[#5D4037] hover:text-white transition-colors" data-filter="seduh">Metode Seduh</button>
-                    <button class="filter-btn px-4 py-2 bg-[#DCE0D9] rounded-full hover:bg-[#5D4037] hover:text-white transition-colors" data-filter="roasting">Roasting</button>
-                    <button class="filter-btn px-4 py-2 bg-[#DCE0D9] rounded-full hover:bg-[#5D4037] hover:text-white transition-colors" data-filter="alat">Alat Kopi</button>
-                    <button class="filter-btn px-4 py-2 bg-[#DCE0D9] rounded-full hover:bg-[#5D4037] hover:text-white transition-colors" data-filter="proses">Proses</button>
-                </div>
-
-                <!-- Glossary Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Glossary items will be populated by JavaScript -->
-                </div>
-
-                <!-- Glossary Detail Modal -->
-                <div id="glossary-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-                    <div class="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-                        <div class="p-6">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
-                                    <i class="fas fa-times text-xl"></i>
-                                </button>
-                            </div>
-                            <div id="modal-content" class="prose">
-                                <!-- Modal content will be populated by JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Jenis Biji Kopi Section -->
-        <section id="jenis-biji" class="section">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Jenis Biji Kopi</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Arabika -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/arabica-bean/400/300.jpg" alt="Arabica Bean" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Arabika</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Asam, manis, kompleks, floral, buah-buahan</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Kandungan Kafein:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 40%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">Rendah (0.8-1.4%)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Keunggulan:</p>
-                                <p class="text-sm">Rasa kompleks dan berkualitas tinggi</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Kekurangan:</p>
-                                <p class="text-sm">Rentan terhadap hama dan penyakit</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Robusta -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/robusta-bean/400/300.jpg" alt="Robusta Bean" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Robusta</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Pahit, kuat, cokelat, kacang, rubbery</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Kandungan Kafein:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 80%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">Tinggi (1.7-4.0%)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Keunggulan:</p>
-                                <p class="text-sm">Tahan terhadap hama dan penyakit</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Kekurangan:</p>
-                                <p class="text-sm">Rasa kurang kompleks dibanding Arabika</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Liberika -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/liberica-bean/400/300.jpg" alt="Liberica Bean" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Liberika</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Woody, smoky, floral, fruity</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Kandungan Kafein:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 60%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">Sedang (1.2-1.5%)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Keunggulan:</p>
-                                <p class="text-sm">Ukuran biji besar dan unik</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Kekurangan:</p>
-                                <p class="text-sm">Produktivitas rendah</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Excelsa -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/excelsa-bean/400/300.jpg" alt="Excelsa Bean" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Excelsa</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Tart, fruity, dark roast notes</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Kandungan Kafein:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 55%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">Sedang (1.0-1.2%)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Keunggulan:</p>
-                                <p class="text-sm">Menambah kompleksitas pada blend</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Kekurangan:</p>
-                                <p class="text-sm">Jarang ditemukan sebagai single origin</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Proses Pengolahan Section -->
-        <section id="proses-pengolahan" class="section bg-[#EAD7C3]">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Proses Pengolahan Kopi</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Washed Process -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/washed-process/400/300.jpg" alt="Washed Process" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-4">Washed Process</h3>
-                            <div class="mb-4">
-                                <h4 class="font-semibold mb-2">Alur Proses:</h4>
-                                <ol class="text-sm space-y-1 list-decimal list-inside">
-                                    <li>Pemetikan buah kopi merah</li>
-                                    <li>Pengupasan kulit dan pulp</li>
-                                    <li>Fermentasi dalam tangki air</li>
-                                    <li>Pencucian untuk menghilangkan lendir</li>
-                                    <li>Pengeringan hingga kadar air 11-12%</li>
-                                </ol>
-                            </div>
-                            <div class="mb-4">
-                                <h4 class="font-semibold mb-2">Karakter Rasa:</h4>
-                                <p class="text-sm">Clean, bright acidity, floral, tea-like</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-2">Keunggulan & Kekurangan:</h4>
-                                <p class="text-sm">Keunggulan: Rasa bersih dan konsisten<br>Kekurangan: Membutuhkan banyak air</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Natural Process -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/natural-process/400/300.jpg" alt="Natural Process" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-4">Natural Process</h3>
-                            <div class="mb-4">
-                                <h4 class="font-semibold mb-2">Alur Proses:</h4>
-                                <ol class="text-sm space-y-1 list-decimal list-inside">
-                                    <li>Pemetikan buah kopi merah</li>
-                                    <li>Penyebaran buah kopi utuh untuk dijemur</li>
-                                    <li>Pembalikan rutin untuk mencegah jamur</li>
-                                    <li>Pengeringan hingga kadar air 11-12%</li>
-                                    <li>Pengupasan kulit kering</li>
-                                </ol>
-                            </div>
-                            <div class="mb-4">
-                                <h4 class="font-semibold mb-2">Karakter Rasa:</h4>
-                                <p class="text-sm">Fruity, sweet, winey, full body</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-2">Keunggulan & Kekurangan:</h4>
-                                <p class="text-sm">Keunggulan: Hemat air, rasa unik<br>Kekurangan: Risiko fermentasi tidak konsisten</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Honey Process -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/honey-process/400/300.jpg" alt="Honey Process" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-4">Honey Process</h3>
-                            <div class="mb-4">
-                                <h4 class="font-semibold mb-2">Alur Proses:</h4>
-                                <ol class="text-sm space-y-1 list-decimal list-inside">
-                                    <li>Pemetikan buah kopi merah</li>
-                                    <li>Pengupasan kulit namun meninggalkan lendir</li>
-                                    <li>Pengeringan dengan lendir masih menempel</li>
-                                    <li>Pengeringan hingga kadar air 11-12%</li>
-                                    <li>Pembersihan sisa lendir yang sudah kering</li>
-                                </ol>
-                            </div>
-                            <div class="mb-4">
-                                <h4 class="font-semibold mb-2">Karakter Rasa:</h4>
-                                <p class="text-sm">Sweet, balanced, medium acidity, syrupy</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-2">Keunggulan & Kekurangan:</h4>
-                                <p class="text-sm">Keunggulan: Keseimbangan rasa washed dan natural<br>Kekurangan: Membutuhkan pengawasan ketat</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Metode Roasting Section -->
-        <section id="metode-roasting" class="section">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Metode Roasting</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Light Roast -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/light-roast/400/300.jpg" alt="Light Roast" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Light Roast</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Suhu:</p>
-                                <p class="text-sm">196-205°C</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Asam tinggi, fruity, floral, kompleks</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Cocok untuk:</p>
-                                <p class="text-sm">V60, Pour Over, Cold Brew</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Level:</p>
-                                <p class="text-sm">Cinnamon Roast, Light City, Half City</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Medium Roast -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/medium-roast/400/300.jpg" alt="Medium Roast" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Medium Roast</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Suhu:</p>
-                                <p class="text-sm">210-219°C</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Keseimbangan asam-manis, karamel, cokelat</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Cocok untuk:</p>
-                                <p class="text-sm">French Press, AeroPress, Drip</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Level:</p>
-                                <p class="text-sm">City, American, Breakfast</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Medium-Dark Roast -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/medium-dark-roast/400/300.jpg" alt="Medium-Dark Roast" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Medium-Dark Roast</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Suhu:</p>
-                                <p class="text-sm">225-230°C</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Rich body, cokelat gelap, sedikit asap</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Cocok untuk:</p>
-                                <p class="text-sm">Espresso, Moka Pot, French Press</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Level:</p>
-                                <p class="text-sm">Full City</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dark Roast -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/dark-roast/400/300.jpg" alt="Dark Roast" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Dark Roast</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Suhu:</p>
-                                <p class="text-sm">230-240°C</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Pahit, asap, burnt, minyak tinggi</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Cocok untuk:</p>
-                                <p class="text-sm">Espresso, Turkish Coffee, Moka Pot</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Level:</p>
-                                <p class="text-sm">Vienna, French, Italian, Spanish</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Cara Pembuatan Kopi Section -->
-        <section id="cara-pembuatan" class="section bg-[#EAD7C3]">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Cara Pembuatan Kopi (Metode Seduh)</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- V60 / Pour Over -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/v60-method/400/300.jpg" alt="V60 Method" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">V60 / Pour Over</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">V60 dripper, filter paper, ketel gooseneck</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Medium-fine</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:15 (15g kopi : 225ml air)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">2-3 menit</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Clean, bright acidity, complex</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- French Press -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/french-press/400/300.jpg" alt="French Press" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">French Press</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">French press, pengaduk</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Coarse</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:15 (15g kopi : 225ml air)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">4 menit</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Full body, rich, heavy mouthfeel</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- AeroPress -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/aeropress/400/300.jpg" alt="AeroPress" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">AeroPress</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">AeroPress, filter paper, pengaduk</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Fine-medium</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:15 (15g kopi : 225ml air)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">1-2 menit</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Clean, rich, versatile</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Chemex -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/chemex/400/300.jpg" alt="Chemex" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Chemex</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">Chemex, special filter paper, ketel gooseneck</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Medium-coarse</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:15 (42g kopi : 630ml air)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">4-5 menit</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Very clean, smooth, bright</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cold Brew -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/cold-brew/400/300.jpg" alt="Cold Brew" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Cold Brew</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">Jar, filter, kain saring</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Coarse</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:8 (100g kopi : 800ml air)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">12-24 jam (suhu ruang/kulkas)</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Smooth, low acidity, chocolatey</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Vietnam Drip -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/vietnam-drip/400/300.jpg" alt="Vietnam Drip" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Vietnam Drip</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">Phin filter, gelas</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Medium</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:10 (20g kopi : 200ml air)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">4-5 menit</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Strong, rich, bold (biasa dengan susu kental manis)</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Espresso Machine -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/espresso-machine/400/300.jpg" alt="Espresso Machine" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Espresso Machine</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">Mesin espresso, grinder, tamper</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Fine</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:2 (18g kopi : 36ml espresso)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">25-30 detik</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Concentrated, rich, crema</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Moka Pot -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/moka-pot/400/300.jpg" alt="Moka Pot" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Moka Pot</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Alat:</p>
-                                <p class="text-sm">Moka pot, kompor</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Grind Size:</p>
-                                <p class="text-sm">Fine-medium</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasio Kopi:Air:</p>
-                                <p class="text-sm">1:7 (20g kopi : 140ml air)</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Waktu Seduh:</p>
-                                <p class="text-sm">4-5 menit</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Karakter Rasa:</p>
-                                <p class="text-sm">Strong, rich, espresso-like</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Minuman Kopi Section -->
-        <section id="minuman-kopi" class="section">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Minuman Kopi Populer</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Espresso -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/espresso/400/300.jpg" alt="Espresso" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Espresso</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Komposisi:</p>
-                                <p class="text-sm">30ml shot espresso</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasa:</p>
-                                <p class="text-sm">Kuat, pekat, intens</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Perbandingan Susu vs Kopi:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 100%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">100% Kopi</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Americano -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/americano/400/300.jpg" alt="Americano" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Americano</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Komposisi:</p>
-                                <p class="text-sm">1-2 shot espresso + air panas</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasa:</p>
-                                <p class="text-sm">Kopi murni dengan intensitas sedang</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Perbandingan Susu vs Kopi:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 100%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">100% Kopi</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cappuccino -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/cappuccino/400/300.jpg" alt="Cappuccino" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Cappuccino</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Komposisi:</p>
-                                <p class="text-sm">1/3 espresso + 1/3 susu + 1/3 foam</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasa:</p>
-                                <p class="text-sm">Seimbang antara kopi dan susu</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Perbandingan Susu vs Kopi:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 33%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">33% Kopi, 67% Susu</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Latte -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/latte/400/300.jpg" alt="Latte" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Latte</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Komposisi:</p>
-                                <p class="text-sm">1 shot espresso + steamed milk + sedikit foam</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasa:</p>
-                                <p class="text-sm">Lebih dominan susu dengan sentuhan kopi</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Perbandingan Susu vs Kopi:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 20%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">20% Kopi, 80% Susu</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Flat White -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/flat-white/400/300.jpg" alt="Flat White" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Flat White</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Komposisi:</p>
-                                <p class="text-sm">2 shot espresso + steamed milk + microfoam</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasa:</p>
-                                <p class="text-sm">Kopi yang lebih kuat dengan susu halus</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Perbandingan Susu vs Kopi:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 40%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">40% Kopi, 60% Susu</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Macchiato -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/macchiato/400/300.jpg" alt="Macchiato" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Macchiato</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Komposisi:</p>
-                                <p class="text-sm">1 shot espresso + sedikit foam susu</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasa:</p>
-                                <p class="text-sm">Espresso yang diberi "tanda" susu</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Perbandingan Susu vs Kopi:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 85%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">85% Kopi, 15% Susu</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mocha -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/mocha/400/300.jpg" alt="Mocha" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Mocha</h3>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Komposisi:</p>
-                                <p class="text-sm">1 shot espresso + cokelat + susu + whipped cream</p>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold mb-1">Rasa:</p>
-                                <p class="text-sm">Perpaduan kopi dan cokelat yang manis</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-1">Perbandingan Susu vs Kopi:</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                    <div class="bg-[#5D4037] h-2.5 rounded-full" style="width: 25%"></div>
-                                </div>
-                                <p class="text-xs text-gray-600 mt-1">25% Kopi, 75% Susu & Cokelat</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Artikel Section -->
-        <section id="artikel" class="section bg-[#EAD7C3]">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Artikel / Blog</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Article 1 -->
-                    <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/coffee-beans-selection/400/250.jpg" alt="Coffee Beans Selection" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Tips Memilih Biji Kopi Sesuai Selera</h3>
-                            <p class="text-sm text-gray-600 mb-2">Diterbitkan: 15 Juni 2023</p>
-                            <p class="text-sm mb-4">Pelajari cara memilih biji kopi yang sesuai dengan preferensi rasa Anda, dari tingkat keasaman hingga catatan rasa yang diinginkan...</p>
-                            <a href="#" class="text-[#5D4037] font-semibold hover:underline">Baca Selengkapnya</a>
-                        </div>
-                    </article>
-
-                    <!-- Article 2 -->
-                    <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/coffee-storage/400/250.jpg" alt="Coffee Storage" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Cara Menyimpan Biji Kopi Agar Awet</h3>
-                            <p class="text-sm text-gray-600 mb-2">Diterbitkan: 10 Juni 2023</p>
-                            <p class="text-sm mb-4">Temukan cara terbaik menyimpan biji kopi untuk menjaga kesegaran dan aroma selama mungkin...</p>
-                            <a href="#" class="text-[#5D4037] font-semibold hover:underline">Baca Selengkapnya</a>
-                        </div>
-                    </article>
-
-                    <!-- Article 3 -->
-                    <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/coffee-history/400/250.jpg" alt="Coffee History" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Sejarah Kopi Dunia & Indonesia</h3>
-                            <p class="text-sm text-gray-600 mb-2">Diterbitkan: 5 Juni 2023</p>
-                            <p class="text-sm mb-4">Menelusuri perjalanan kopi dari penemuannya di Ethiopia hingga menjadi komoditas global dan masuk ke Indonesia...</p>
-                            <a href="#" class="text-[#5D4037] font-semibold hover:underline">Baca Selengkapnya</a>
-                        </div>
-                    </article>
-
-                    <!-- Article 4 -->
-                    <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/single-origin-blend/400/250.jpg" alt="Single Origin vs Blend" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Perbedaan Single Origin vs Blend</h3>
-                            <p class="text-sm text-gray-600 mb-2">Diterbitkan: 1 Juni 2023</p>
-                            <p class="text-sm mb-4">Memahami perbedaan antara kopi single origin dan blend, serta kapan waktu terbaik menikmati masing-masing...</p>
-                            <a href="#" class="text-[#5D4037] font-semibold hover:underline">Baca Selengkapnya</a>
-                        </div>
-                    </article>
-
-                    <!-- Article 5 -->
-                    <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/v60-tutorial/400/250.jpg" alt="V60 Tutorial" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Tutorial Menyeduh Kopi dengan V60</h3>
-                            <p class="text-sm text-gray-600 mb-2">Diterbitkan: 28 Mei 2023</p>
-                            <p class="text-sm mb-4">Panduan lengkap menyeduh kopi dengan metode V60, dari pemilihan biji hingga teknik pouring yang tepat...</p>
-                            <a href="#" class="text-[#5D4037] font-semibold hover:underline">Baca Selengkapnya</a>
-                        </div>
-                    </article>
-
-                    <!-- Article 6 -->
-                    <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <img src="https://picsum.photos/seed/coffee-cupping/400/250.jpg" alt="Coffee Cupping" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">Pengenalan Coffee Cupping untuk Pemula</h3>
-                            <p class="text-sm text-gray-600 mb-2">Diterbitkan: 25 Mei 2023</p>
-                            <p class="text-sm mb-4">Belajar cara mengevaluasi kopi secara profesional dengan metode cupping yang digunakan oleh para barista...</p>
-                            <a href="#" class="text-[#5D4037] font-semibold hover:underline">Baca Selengkapnya</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tentang Section -->
-        <section id="tentang" class="section">
-            <div class="container mx-auto px-4 py-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Tentang & Kontak</h2>
-                
-                <div class="max-w-4xl mx-auto">
-                    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-                        <h3 class="text-2xl font-bold mb-4">Tentang Second Home</h3>
-                        <p class="mb-4">Second Home adalah kamus kopi online yang dirancang untuk menjadi pusat informasi lengkap tentang dunia kopi. Website ini dibuat untuk membantu pemula dan pecinta kopi memahami berbagai aspek kopi, dari jenis biji hingga metode penyeduhan.</p>
-                        <p class="mb-4">Visi kami adalah membuat informasi tentang kopi mudah diakses dan dipahami oleh semua orang, sehingga setiap orang dapat menikmati secangkir kopi dengan pemahaman yang lebih baik.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-white rounded-lg shadow-md p-8">
-                            <h3 class="text-2xl font-bold mb-4">Tim Pengembang</h3>
-                            <div class="space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Chikal Rafi Setyawan</p>
-                                        <p class="text-sm text-gray-600">241102415092</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">M. Zacky Ananda F</p>
-                                        <p class="text-sm text-gray-600">241110241515</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Ferry Setiawan</p>
-                                        <p class="text-sm text-gray-600">2411102415006</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Robi Ghoniyun Karyem</p>
-                                        <p class="text-sm text-gray-600">2411102415010</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">M. Ahda Assyifa</p>
-                                        <p class="text-sm text-gray-600">2411102415162</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">M. Rangga A. P</p>
-                                        <p class="text-sm text-gray-600">2411102415054</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">M. Taufik Qurrahman</p>
-                                        <p class="text-sm text-gray-600">2411102415022</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Resya Ramadhan</p>
-                                        <p class="text-sm text-gray-600">2411102415037</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-[#5D4037]"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Fikri Pramudya</p>
-                                        <p class="text-sm text-gray-600">2411102415021</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg shadow-md p-8">
-                            <h3 class="text-2xl font-bold mb-4">Hubungi Kami</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center space-x-3">
-                                    <i class="fas fa-envelope text-[#5D4037]"></i>
-                                    <p>info@secondhome.id</p>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <i class="fas fa-phone text-[#5D4037]"></i>
-                                    <p>+62 812-3456-7890</p>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <i class="fas fa-map-marker-alt text-[#5D4037]"></i>
-                                    <p>Jakarta, Indonesia</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-6">
-                                <h4 class="font-semibold mb-3">Ikuti Kami</h4>
-                                <div class="flex space-x-4">
-                                    <a href="#" class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center hover:bg-[#5D4037] hover:text-white transition-colors">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center hover:bg-[#5D4037] hover:text-white transition-colors">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center hover:bg-[#5D4037] hover:text-white transition-colors">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-[#EAD7C3] rounded-full flex items-center justify-center hover:bg-[#5D4037] hover:text-white transition-colors">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="mt-6">
-                                <h4 class="font-semibold mb-3">Kirim Pesan</h4>
-                                <form class="space-y-3">
-                                    <input type="text" placeholder="Nama" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#5D4037]">
-                                    <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#5D4037]">
-                                    <textarea placeholder="Pesan" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#5D4037]"></textarea>
-                                    <button type="submit" class="w-full bg-[#5D4037] text-white py-2 rounded-lg hover:bg-[#3E2723] transition-colors">Kirim</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-[#3E2723] text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-2">
-                        <i class="fas fa-coffee text-xl"></i>
-                        <h3 class="text-xl font-bold">Second Home</h3>
-                    </div>
-                    <p class="text-sm">Kamus Kopi Online Indonesia</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#beranda" class="hover:text-[#EAD7C3] transition-colors">Beranda</a>
-                    <a href="#kamus-kopi" class="hover:text-[#EAD7C3] transition-colors">Kamus Kopi</a>
-                    <a href="#artikel" class="hover:text-[#EAD7C3] transition-colors">Artikel</a>
-                    <a href="#tentang" class="hover:text-[#EAD7C3] transition-colors">Tentang</a>
-                </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-sm">
-                <p>&copy; 2023 Second Home. Kelompok 8. All rights reserved.</p>
+<main id="app-content">
+    <!-- BERANDA -->
+    <section id="beranda-page" class="page active-page">
+        <div class="hero">
+            <div class="container">
+                <h2>Selamat Datang di Second Home</h2>
+                <p>Pusat edukasi dan referensi untuk para pecinta kopi.</p>
             </div>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <div class="container">
+            <div class="quick-access">
+                <a class="quick-card" data-target="biji-page"><h3>Jenis Biji Kopi</h3></a>
+                <a class="quick-card" data-target="kamus-page"><h3>Kamus Kopi</h3></a>
+                <a class="quick-card" data-target="seduh-page"><h3>Metode Seduh</h3></a>
+            </div>
+
+            <div class="content-section">
+                <h2>Artikel Terbaru</h2>
+                <div id="homepage-articles" class="article-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Halaman lain menyusul (tetap ada di file) -->
+</main>
+
+<!-- Modal -->
+<div id="detail-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="container">
+        <p>&copy; 2024 Second Home.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // --- ELEMEN DOM ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    const modal = document.getElementById('detail-modal');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.close-btn');
+    const quickAccessLinks = document.querySelectorAll('.quick-card');
+
+    // --- DATA KOPI & KONTEN ---
+    // Data ini dapat dengan mudah diperluas
+
+    const glossaryTerms = [
+        { id: 1, term: 'Acidity', definition: 'Rasa tajam dan cerah yang mirip dengan buah. Kualitas yang diinginkan dalam kopi.', category: 'rasa' },
+        { id: 2, term: 'Aeropress', definition: 'Alat seduh manual yang menggunakan tekanan udara untuk mengekstrak kopi.', category: 'alat' },
+        { id: 3, term: 'Aftertaste', definition: 'Rasa yang tersisa di mulut setelah menelan kopi.', category: 'rasa' },
+        { id: 4, term: 'Arabica', definition: 'Spesies kopi yang paling populer, dikenal dengan rasa asam yang kompleks dan aroma wangi.', category: 'biji' },
+        { id: 5, term: 'Barista', definition: 'Orang yang ahli dalam membuat minuman berbasis espresso.', category: 'seduh' },
+        { id: 6, term: 'Body', definition: 'Sensasi berat atau kekentalan kopi di mulut (misalnya, light, medium, full).', category: 'rasa' },
+        { id: 7, term: 'Bloom', definition: 'Tahapan awal seduh manual (pour-over) di mana air panas pertama kali dituangkan, menyebabkan kopi mengembang dan melepaskan gas CO2.', category: 'seduh' },
+        { id: 8, term: 'Cupping', definition: 'Metode standar profesional untuk mengevaluasi profil rasa kopi.', category: 'rasa' },
+        { id: 9, term: 'Espresso', definition: 'Minuman kopi pekat yang dihasilkan dengan mengekstrak bubuk kopi dengan air panas bertekanan tinggi.', category: 'seduh' },
+        { id: 10, term: 'Extraction', definition: 'Proses melarutkan rasa dari bubuk kopi ke dalam air.', category: 'seduh' },
+        { id: 11, term: 'Green Bean', definition: 'Biji kopi yang belum disangrai (roast).', category: 'biji' },
+        { id: 12, term: 'Latte Art', definition: 'Seni membuat pola di atas permukaan minuman kopi berbasis susu.', category: 'seduh' },
+        { id: 13, term: 'Moka Pot', definition: 'Alat seduh kompor yang menggunakan uap air untuk membuat kopi mirip espresso.', category: 'alat' },
+        { id: 14, term: 'Robusta', definition: 'Spesies kopi dengan kandungan kafein lebih tinggi dan rasa yang lebih kuat, pahit, dan earthy.', category: 'biji' },
+        { id: 15, term: 'Single Origin', definition: 'Kopi yang berasal dari satu wilayah atau petani tertentu, bukan campuran (blend).', category: 'biji' }
+    ];
+
+    const coffeeBeans = [
+        {
+            id: 'arabica',
+            name: 'Arabica (Coffea arabica)',
+            image: 'https://images.unsplash.com/photo-1611854779393-1b2e81d36675?q=80&w=2070',
+            flavor: 'Asam buah, floral, gula, cokelat',
+            caffeine: 'Rendah (1.5% kafein)',
+            advantages: 'Rasa kompleks, aroma wangi, kualitas tinggi.',
+            disadvantages: 'Rentan terhadap hama dan penyakit, membutuhkan iklim dingin.',
+            location: 'Amerika Latin, Afrika Timur, Asia.'
+        },
+        {
+            id: 'robusta',
+            name: 'Robusta (Coffea canephora)',
+            image: 'https://images.unsplash.com/photo-1588224565409-5b9b8c3b9b2f?q=80&w=2070',
+            flavor: 'Pahit, earthy, kayu, karet',
+            caffeine: 'Tinggi (2.7% kafein)',
+            advantages: 'Tahan hama, hasil panen lebih tinggi, harga lebih murah.',
+            disadvantages: 'Rasa kurang kompleks, cenderung lebih pahit.',
+            location: 'Afrika Tengah dan Barat, Asia Tenggara (termasuk Indonesia).'
+        },
+        {
+            id: 'liberika',
+            name: 'Liberika (Coffea liberica)',
+            image: 'https://images.unsplash.com/photo-1588030154494-3ccd47f539b8?q=80&w=2070',
+            flavor: 'Floral, buah eksotis, asap',
+            caffeine: 'Rendah hingga sedang',
+            advantages: 'Unik dan langka, tahan terhadap beberapa penyakit.',
+            disadvantages: 'Produksi terbatas, rasa yang tidak umum dan mungkin tidak disukai semua orang.',
+            location: 'Afrika Barat, Malaysia, Filipina, Indonesia.'
+        },
+        {
+            id: 'excelsa',
+            name: 'Excelsa (Coffea excelsa)',
+            image: 'https://plus.unsplash.com/premium_photo-1667707369974-3b8f7c4c2a7c?q=80&w=2070',
+            flavor: 'Asam, fruity, tart',
+            caffeine: 'Rendah',
+            advantages: 'Memberikan kompleksitas pada campuran (blend), tanaman yang kokoh.',
+            disadvantages: 'Sering diklasifikasikan ulang sebagai varietas Liberika, produksi sangat kecil.',
+            location: 'Asia Tenggara.'
+        }
+    ];
+
+    const processes = [
+        {
+            id: 'washed',
+            name: 'Washed Process',
+            image: 'https://images.unsplash.com/photo-1559056429-404c592a35c8?q=80&w=2070',
+            description: 'Pulpa buah kopi dibersihkan sebelum dikeringkan. Biji kopi difermentasi dalam tangki air untuk menghilangkan lendir.',
+            flavor: 'Rasa yang bersih, cerah, asam yang jelas, dan aroma floral.',
+            advantages: 'Konsistensi rasa tinggi, menghighlight karakter asli biji.',
+            disadvantages: 'Membutuhkan banyak air, proses lebih rumit dan berisiko fermentasi gagal.'
+        },
+        {
+            id: 'natural',
+            name: 'Natural Process',
+            image: 'https://images.unsplash.com/photo-1584336228963-651e8f7c30b3?q=80&w=2070',
+            description: 'Seluruh buah kopi dikeringkan utuh di bawah matahari. Setelah kering, pulpa baru dibersihkan.',
+            flavor: 'Rasa manis (buah), body yang pekat, dan asam yang lebih rendah.',
+            advantages: 'Proses sederhana, hemat air, menghasilkan rasa buah yang intens.',
+            disadvantages: 'Risiko jamur dan fermentasi tidak merata, membutuhkan perhatian ekstra saat pengeringan.'
+        },
+        {
+            id: 'honey',
+            name: 'Honey Process',
+            image: 'https://images.unsplash.com/photo-1580996378194-e4d7b20c8d7c?q=80&w=2070',
+            description: 'Metode perpaduan antara Washed dan Natural. Pulpa buah dibuang, tetapi lendir (honey) dibiarkan menempel saat pengeringan.',
+            flavor: 'Keseimbangan antara rasa asam (Washed) dan manis (Natural), tekstur yang lebih kental.',
+            advantages: 'Menghasilkan profil rasa yang unik dan kompleks, lebih hemat air dari Washed.',
+            disadvantages: 'Proses pengeringan yang sulit dan membutuhkan tenaga kerja lebih banyak.'
+        }
+    ];
+
+    const roastLevels = [
+        {
+            id: 'light',
+            name: 'Light Roast',
+            image: 'https://images.unsplash.com/photo-1511920183353-3c9c3a6c1c31?q=80&w=2070',
+            description: 'Disangrai hingga "first crack" selesai. Warna biji masih cokelat muda, permukaan kering.',
+            flavor: 'Asam tinggi, aroma buah dan floral yang dominan, body ringan.',
+            suitableFor: 'Pour-over, Aeropress, Cold Brew.'
+        },
+        {
+            id: 'medium',
+            name: 'Medium Roast',
+            image: 'https://images.unsplash.com/photo-1587953006225-bb1597b511f5?q=80&w=2070',
+            description: 'Disangrai di tengah-tengah "first crack" dan "second crack". Keseimbangan antara asam, manis, dan pahit.',
+            flavor: 'Keseimbangan rasa, asam sedang, karamel dan cokelat mulai terasa.',
+            suitableFor: 'Metode seduh apa saja, sangat umum untuk kopi rumah.'
+        },
+        {
+            id: 'dark',
+            name: 'Dark Roast',
+            image: 'https://images.unsplash.com/photo-1511538194211-4d64a9ba5c2b?q=80&w=2070',
+            description: 'Disangrai melewati "second crack". Warna biji sangat gelap, permukaan berminyak.',
+            flavor: 'Asam rendah, rasa pahit dan gosong (smoky) yang dominan, body pekat.',
+            suitableFor: 'Espresso, French Press, Moka Pot.'
+        }
+    ];
+    
+    const brewingMethods = [
+        {
+            id: 'v60',
+            name: 'V60 / Pour-Over',
+            image: 'https://images.unsplash.com/photo-1579668158175-71e8b7258854?q=80&w=2070',
+            grindSize: 'Medium-fine',
+            ratio: '1:15 (misal 18g kopi, 270g air)',
+            time: '2.5 - 3 menit',
+            flavor: 'Bersih, kompleks, highlight keasaman.'
+        },
+        {
+            id: 'french-press',
+            name: 'French Press',
+            image: 'https://images.unsplash.com/photo-1511920183353-3c9c3a6c1c31?q=80&w=2070',
+            grindSize: 'Coarse',
+            ratio: '1:15 (misal 30g kopi, 450g air)',
+            time: '4 menit',
+            flavor: 'Full-bodied, pekat, tekstur berminyak.'
+        },
+        {
+            id: 'aeropress',
+            name: 'Aeropress',
+            image: 'https://images.unsplash.com/photo-1597392639363-2c8b2a5d4a4b?q=80&w=2070',
+            grindSize: 'Fine-medium',
+            ratio: '1:15 (misal 15g kopi, 225g air)',
+            time: '1.5 - 2 menit',
+            flavor: 'Bersih, pekat, fleksibel (bisa mirip espresso atau filter).'
+        },
+        {
+            id: 'cold-brew',
+            name: 'Cold Brew',
+            image: 'https://images.unsplash.com/photo-1551036351-fb34e1bb59e3?q=80&w=1974',
+            grindSize: 'Very Coarse',
+            ratio: '1:8 (misal 100g kopi, 800g air)',
+            time: '12 - 24 jam (rendaman)',
+            flavor: 'Sangat rendah asam, manis, halus.'
+        }
+    ];
+
+    const coffeeDrinks = [
+        {
+            id: 'espresso',
+            name: 'Espresso',
+            image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1974',
+            composition: 'Satu shot (30ml) kopi pekat.',
+            flavor: 'Intens, pekat, lapisan crema di atas.',
+            milkRatio: { coffee: 100, milk: 0 }
+        },
+        {
+            id: 'americano',
+            name: 'Americano',
+            image: 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cda9?q=80&w=2070',
+            composition: 'Espresso + air panas.',
+            flavor: 'Mirip espresso namun lebih encer dan ringan.',
+            milkRatio: { coffee: 100, milk: 0 }
+        },
+        {
+            id: 'cappuccino',
+            name: 'Cappuccino',
+            image: 'https://images.unsplash.com/photo-1534778101976-628808918e88?q=80&w=2070',
+            composition: 'Espresso + susu uap + busa susu (rasio 1:1:1).',
+            flavor: 'Seimbang antara rasa kopi dan susu.',
+            milkRatio: { coffee: 33, milk: 67 }
+        },
+        {
+            id: 'latte',
+            name: 'Café Latte',
+            image: 'https://images.unsplash.com/photo-1720048170771-1e1a6c6c8b9a?q=80&w=1932',
+            composition: 'Espresso + banyak susu uap + lapisan tipis busa.',
+            flavor: 'Lembut, susu mendominasi dengan sentuhan kopi.',
+            milkRatio: { coffee: 20, milk: 80 }
+        }
+    ];
+
+    const articles = [
+        {
+            id: 'artikel-1',
+            title: 'Tips Memilih Biji Kopi untuk Pemula',
+            summary: 'Bingung memulai hobi kopi? Artikel ini memandu Anda memilih biji kopi pertama.',
+            image: 'https://images.unsplash.com/photo-1589800729392-0c6144665061?q=80&w=2070'
+        },
+        {
+            id: 'artikel-2',
+            title: 'Cara Menyimpan Biji Kopi Agar Awet',
+            summary: 'Pelajari cara terbaik menyimpan biji kopi agar tetap segar dan aromatik.',
+            image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=2070'
+        },
+        {
+            id: 'artikel-3',
+            title: 'Sejarah Kopi di Indonesia',
+            summary: 'Mengenal perjalanan kopi dari pertama kali tiba hingga menjadi komoditas nasional.',
+            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070'
+        }
+    ];
+
+
+    // --- FUNGSI UTAMA ---
+
+    // 1. Navigasi Halaman (SPA)
+    const showPage = (pageId) => {
+        pages.forEach(page => page.classList.remove('active-page'));
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        document.getElementById(pageId).classList.add('active-page');
+        document.querySelector(`[data-target="${pageId}"]`).classList.add('active');
+    };
+
+    // 2. Modal
+    const showModal = (content) => {
+        modalBody.innerHTML = content;
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Mencegah scroll di background
+    };
+
+    const closeModal = () => {
+        modal.style.display = 'none';
+        modalBody.innerHTML = ''; // Kosongkan konten saat ditutup
+        document.body.style.overflow = 'auto'; // Kembalikan scroll
+    };
+
+    // 3. Fungsi untuk Membuat Konten Dinamis
+    const createCard = (item, type) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        
+        let cardContent = `
+            <img src="${item.image}" alt="${item.name}" class="card-img">
+            <div class="card-body">
+                <h3>${item.name}</h3>
+        `;
+        
+        if (type === 'drinks' && item.milkRatio) {
+            cardContent += `
+                <div class="milk-ratio-chart">
+                    <div class="coffee-part" style="width: ${item.milkRatio.coffee}%"></div>
+                    <div class="milk-part" style="width: ${item.milkRatio.milk}%"></div>
+                </div>
+            `;
+        }
+
+        cardContent += `<p>${item.summary || item.flavor || item.description}</p></div>`;
+        card.innerHTML = cardContent;
+
+        card.addEventListener('click', () => {
+            let detailContent = `<img src="${item.image}" alt="${item.name}"><h2>${item.name}</h2>`;
+            // Logika untuk menampilkan detail berbeda berdasarkan tipe
+            if (type === 'beans') {
+                detailContent += `
+                    <p><strong>Karakter Rasa:</strong> ${item.flavor}</p>
+                    <p><strong>Kandungan Kafein:</strong> ${item.caffeine}</p>
+                    <p><strong>Keunggulan:</strong> ${item.advantages}</p>
+                    <p><strong>Kekurangan:</strong> ${item.disadvantages}</p>
+                    <p><strong>Lokasi Utama:</strong> ${item.location}</p>
+                `;
+            } else if (type === 'processes') {
+                detailContent += `
+                    <p>${item.description}</p>
+                    <p><strong>Karakter Rasa:</strong> ${item.flavor}</p>
+                    <p><strong>Keunggulan:</strong> ${item.advantages}</p>
+                    <p><strong>Kekurangan:</strong> ${item.disadvantages}</p>
+                `;
+            } else if (type === 'roasts') {
+                 detailContent += `
+                    <p>${item.description}</p>
+                    <p><strong>Karakter Rasa:</strong> ${item.flavor}</p>
+                    <p><strong>Cocok untuk:</strong> ${item.suitableFor}</p>
+                `;
+            } else if (type === 'brewing') {
+                 detailContent += `
+                    <ul class="info-list">
+                        <li><strong>Grind Size:</strong> ${item.grindSize}</li>
+                        <li><strong>Rasio Kopi:Air:</strong> ${item.ratio}</li>
+                        <li><strong>Waktu Seduh:</strong> ${item.time}</li>
+                        <li><strong>Karakter Rasa:</strong> ${item.flavor}</li>
+                    </ul>
+                `;
+            } else if (type === 'drinks') {
+                 detailContent += `
+                    <p>${item.composition}</p>
+                    <p><strong>Karakter Rasa:</strong> ${item.flavor}</p>
+                `;
+            }
+            showModal(detailContent);
+        });
+
+        return card;
+    };
+    
+    const createArticleCard = (article) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <img src="${article.image}" alt="${article.title}" class="card-img">
+            <div class="card-body">
+                <h3>${article.title}</h3>
+                <p>${article.summary}</p>
+    });
+</script>
+
 </body>
 </html>

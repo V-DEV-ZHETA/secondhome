@@ -1,13 +1,16 @@
 # TODO: Improve UI/UX of Coffee Dictionary Website
 
 ## Add Popular Indonesian Coffee Beans
-- [ ] Add cards for Gayo (Aceh), Mandheling (Sumatra), Toraja (Sulawesi), Java, Bali Kintamani, Flores, Papua Wamena, Kopi Luwak to "Jenis Biji Kopi" section
-- [ ] Update grid layout to accommodate more cards (change to 3 columns or keep responsive)
+- [x] Add cards for Gayo (Aceh), Mandheling (Sumatra), Toraja (Sulawesi), Java, Bali Kintamani, Flores, Papua Wamena, Kopi Luwak to "Jenis Biji Kopi" section
+- [x] Update grid layout to accommodate more cards (changed to 3 columns)
+- [x] Add hover effects (scale animation) for all cards
+- [x] Add animated progress bars for caffeine levels
 
 ## Enhance Modal Animations
-- [ ] Improve modal entrance animation with scale effect
-- [ ] Add exit animation for modal close
-- [ ] Add smooth transitions for modal content loading
+- [x] Improve modal entrance animation with scale effect (fadeInScale)
+- [x] Add bounce effect to modal entrance (slideInBounce)
+- [x] Add exit animation for modal close (fadeOutScale and slideOutBounce)
+- [x] Update JavaScript to handle closing animations properly
 
 ## Additional Interactivity Improvements
 - [ ] Animate progress bars for caffeine levels on card hover/load
