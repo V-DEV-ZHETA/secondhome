@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proses Pengolahan - Second Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABEL WARNA & GLOBAL --- */
+        :root {
+            --primary-dark: #151515;
+            --accent-red: #A63D40;
+            --accent-gold: #E9B872;
+            --light-gold: #f5d4a1;
+            --text-light: #f4f4f4;
+            --bg-card: #2c2c2c;
+            --bg-section: #1e1e1e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: .5rem;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        /* --- HEADER NAVIGASI --- */
+        .main-header {
+            background-color: rgba(21, 21, 21, 0.85);
+            padding: .8rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .logo {
+            color: var(--accent-gold);
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: 0.25s;
+        }
+
+        .nav-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: .55rem 1rem;
+            border-radius: 8px;
+            transition: .25s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .main-content { margin-top: 80px; padding: 2rem 0; }
+
+        .process-card {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--bg-section);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer .container > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-info h3 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-info p {
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-container">
+                <h1 class="logo">SECOND HOME</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="nav-icon"><i class="fas fa-search"></i></a></li>
+                    <li><a href="#" class="nav-icon"><i class="fas fa-bars"></i></a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3 style="color: var(--accent-gold);">Menu</h3>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><a href="index.html">BERANDA</a></li>
+            <li><a href="kamus.html">KAMUS KOPI</a></li>
+            <li><a href="biji.html">JENIS BIJI KOPI</a></li>
+            <li><a href="proses.html">PROSES PENGOLAHAN</a></li>
+            <li><a href="roasting.html">METODE ROASTING</a></li>
+            <li><a href="seduh.html">METODE PENYEDUHAN</a></li>
+            <li><a href="menu.html">VARIASI MENU KOPI</a></li>
+            <li><a href="tentang.html">TENTANG</a></li>
+            <li><a href="#"><i class="fas fa-search"></i> Cari</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero-section" style="text-align: center; padding: 10rem 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 2rem;">
+                <div class="hero-content" style="max-width: 1200px; margin: 0 auto;">
+                    <h1 style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 0.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">KAMUS KOPI</h1>
+                    <p style="font-size: 1.5rem; color: var(--text-light); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Temukan Segala Tentang Dunia Kopi di Rumah Kedua Anda</p>
+                </div>
+            </div>
+
+            <!-- Buttons to Main Features -->
+            <div class="features-buttons" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="color: var(--accent-gold); margin-bottom: 2rem;">Konten Utama</h2>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; justify-content: center; max-width: 1200px; margin: 0 auto;">
+                    <a href="index.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
+                    <a href="kamus.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">KAMUS KOPI</a>
+                    <a href="proses.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">JENIS BIJI KOPI</a>
+                    <a href="roasting.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
+                    <a href="seduh.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">METODE ROASTING</a>
+                    <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">CARA PENYEDUHAN KOPI</a>
+                    <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
+                    <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">TENTANG</a>
+                </div>
+            </div>
+
+<main class="main-content">
+    <div class="container">
+        <h2>Proses Pengolahan</h2>
+        <p>Natural, Honey, Washed, dan proses eksperimental lain.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div class="process-card">
+                <h3>Natural</h3>
+                <p>Biji kopi dikeringkan bersama kulit buahnya, menghasilkan rasa manis, fruity, dan kompleks. Proses tradisional yang memakan waktu lama.</p>
+            </div>
+            <div class="process-card">
+                <h3>Honey</h3>
+                <p>Sebagian mucilage (lendir buah) dipertahankan selama pengeringan, memberikan rasa manis, body penuh, dan aroma floral.</p>
+            </div>
+            <div class="process-card">
+                <h3>Washed</h3>
+                <p>Biji difermentasi dan dicuci untuk menghilangkan mucilage, menghasilkan rasa bersih, asamitas tinggi, dan aroma floral yang kuat.</p>
+            </div>
+            <div class="process-card">
+                <h3>Eksperimental</h3>
+                <p>Metode inovatif seperti anaerobic fermentation atau carbonic maceration, menghasilkan profil rasa unik dan kompleks.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div>
+            <div class="footer-info">
+                <h3>Second Home</h3>
+                <p>Pusat edukasi kopi untuk pecinta kopi Indonesia. © 2023 Second Home. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

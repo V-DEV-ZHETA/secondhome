@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Second Home - Beranda</title>
+    <title>Kamus Kopi - Second Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -128,14 +128,17 @@
             padding: 2rem 0; 
         }
 
-        .feature-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(166, 61, 64, 0.4);
+        .term-card {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .article-card:hover {
+        .term-card:hover {
             transform: translateY(-5px);
-            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* --- FOOTER --- */
@@ -266,10 +269,6 @@
             .features-buttons div {
                 grid-template-columns: repeat(2, 1fr) !important;
             }
-            
-            .highlights-section > div {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
         }
 
         @media (max-width: 768px) {
@@ -324,12 +323,7 @@
                 font-size: 0.9rem !important;
             }
             
-            .highlights-section > div {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
-            }
-            
-            .article-card {
+            .term-card {
                 padding: 1.2rem !important;
             }
             
@@ -357,15 +351,15 @@
                 font-size: 0.85rem !important;
             }
             
-            .article-card {
+            .term-card {
                 padding: 1rem !important;
             }
             
-            .article-card h3 {
+            .term-card h3 {
                 font-size: 1.1rem;
             }
             
-            .article-card p {
+            .term-card p {
                 font-size: 0.9rem;
             }
         }
@@ -417,7 +411,7 @@
             <!-- Hero Section -->
             <div class="hero-section" style="text-align: center; padding: 10rem 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 2rem;">
                 <div class="hero-content" style="max-width: 1200px; margin: 0 auto;">
-                    <h1 style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 0.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">BERANDA</h1>
+                    <h1 style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 0.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">KAMUS KOPI</h1>
                     <p style="font-size: 1.5rem; color: var(--text-light); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Temukan Segala Tentang Dunia Kopi di Rumah Kedua Anda</p>
                 </div>
             </div>
@@ -428,37 +422,42 @@
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; justify-content: center; max-width: 1200px; margin: 0 auto;">
                     <a href="index.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
                     <a href="kamus.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">KAMUS KOPI</a>
-                    <a href="biji.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">JENIS BIJI KOPI</a>
-                    <a href="proses.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
-                    <a href="roasting.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">METODE ROASTING</a>
+                    <a href="proses.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">JENIS BIJI KOPI</a>
+                    <a href="roasting.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
+                    <a href="seduh.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">METODE ROASTING</a>
                     <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">CARA PENYEDUHAN KOPI</a>
                     <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
                     <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">TENTANG</a>
                 </div>
             </div>
 
-            <!-- Highlight Latest Content -->
-            <div class="highlights-section">
-                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--accent-gold);">Konten Terbaru</h2>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
-                    <div class="article-card" style="background: var(--bg-section); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                        <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Panduan Memilih Biji Kopi Arabika</h3>
-                        <p style="color: var(--text-light); margin-bottom: 1rem;">Pelajari cara memilih biji kopi Arabika berkualitas tinggi untuk penyeduhan sehari-hari.</p>
-                        <a href="#" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
+            <!-- Kamus Kopi Section -->
+            <div class="kamus-section">
+                <h2>Kamus Kopi</h2>
+                <p>Kumpulan istilah kopi yang sering digunakan barista dan pecinta kopi.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                    <div class="term-card">
+                        <h3>Espresso</h3>
+                        <p>Minuman kopi pekat yang diseduh dengan tekanan tinggi dari mesin espresso, basis untuk banyak minuman kopi lainnya.</p>
                     </div>
-                    <div class="article-card" style="background: var(--bg-section); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                        <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Tips Penyeduhan V60 yang Sempurna</h3>
-                        <p style="color: var(--text-light); margin-bottom: 1rem;">Rahasia ekstraksi rasa optimal dengan metode pour-over V60.</p>
-                        <a href="#" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
+                    <div class="term-card">
+                        <h3>Latte</h3>
+                        <p>Espresso dicampur dengan susu steamed dan busa susu tipis di atasnya, sering dengan latte art.</p>
                     </div>
-                    <div class="article-card" style="background: var(--bg-section); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                        <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Istilah Barista yang Wajib Diketahui</h3>
-                        <p style="color: var(--text-light); margin-bottom: 1rem;">Kumpulan istilah kopi yang sering digunakan di kedai kopi.</p>
-                        <a href="#" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
+                    <div class="term-card">
+                        <h3>Crema</h3>
+                        <p>Lapisan busa keemasan di atas espresso yang menandakan ekstraksi yang baik dari biji kopi segar.</p>
+                    </div>
+                    <div class="term-card">
+                        <h3>Barista</h3>
+                        <p>Ahli kopi yang terampil dalam menyiapkan, menyeduh, dan menyajikan minuman kopi berkualitas tinggi.</p>
+                    </div>
+                    <div class="term-card">
+                        <h3>Pour Over</h3>
+                        <p>Metode penyeduhan manual di mana air panas dituang secara bertahap melalui bubuk kopi di filter.</p>
                     </div>
                 </div>
             </div>
-            
         </div>
     </main>
 
@@ -467,7 +466,7 @@
             <div>
                 <div class="footer-info">
                     <h3>Second Home</h3>
-                    <p>Pusat edukasi kopi untuk pecinta kopi Indonesia. © 2025 Second Home. All rights reserved.</p>
+                    <p>Pusat edukasi kopi untuk pecinta kopi Indonesia. © 2023 Second Home. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>

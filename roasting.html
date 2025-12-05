@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metode Roasting - Second Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABEL WARNA & GLOBAL --- */
+        :root {
+            --primary-dark: #151515;
+            --accent-red: #A63D40;
+            --accent-gold: #E9B872;
+            --light-gold: #f5d4a1;
+            --text-light: #f4f4f4;
+            --bg-card: #2c2c2c;
+            --bg-section: #1e1e1e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: .5rem;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        /* --- HEADER NAVIGASI --- */
+        .main-header {
+            background-color: rgba(21, 21, 21, 0.85);
+            padding: .8rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .logo {
+            color: var(--accent-gold);
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: 0.25s;
+        }
+
+        .nav-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: .55rem 1rem;
+            border-radius: 8px;
+            transition: .25s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .main-content { margin-top: 80px; padding: 2rem 0; }
+
+        .roast-card {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .roast-card:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--bg-section);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer .container > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-info h3 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-info p {
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container">
+        <div class="logo-container">
+            <span class="logo-icon">☕</span>
+            <h1 class="logo">Second Home</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="kamus.html">Kamus Kopi</a></li>
+                <li><a href="biji.html">Jenis Biji Kopi</a></li>
+                <li><a href="proses.html">Proses Pengolahan</a></li>
+                <li><a href="roasting.html" class="active">Metode Roasting</a></li>
+                <li><a href="seduh.html">Metode Penyeduhan</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="#" class="nav-icon">🔍</a></li>
+                <li><a href="#" class="nav-icon">≡</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="container">
+        <h2>Metode Roasting</h2>
+        <p>Light roast, medium roast, dark roast serta profil rasa.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div class="roast-card">
+                <h3>Light Roast</h3>
+                <p>Biji kopi dipanggang pada suhu rendah (190-205°C), mempertahankan asamitas tinggi, rasa buah, dan aroma floral. Cocok untuk pour-over dan cold brew.</p>
+            </div>
+            <div class="roast-card">
+                <h3>Medium Roast</h3>
+                <p>Pemanggangan sedang (210-220°C), keseimbangan antara asamitas dan body. Rasa karamel, cokelat, dan sedikit manis. Ideal untuk berbagai metode seduh.</p>
+            </div>
+            <div class="roast-card">
+                <h3>Dark Roast</h3>
+                <p>Pemanggangan tinggi (225-245°C), menghasilkan rasa smoky, pahit, dan oily. Digunakan untuk espresso dan French press, menonjolkan kekuatan kopi.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div>
+            <div class="footer-info">
+                <h3>Second Home</h3>
+                <p>Pusat edukasi kopi untuk pecinta kopi Indonesia. © 2023 Second Home. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
