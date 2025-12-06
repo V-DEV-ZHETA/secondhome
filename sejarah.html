@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamus Kopi - Second Home</title>
+    <title>Sejarah Kopi - Second Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -49,6 +49,11 @@
             margin-bottom: 2rem;
             padding-bottom: .5rem;
             border-bottom: 2px solid var(--accent-red);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
         }
 
         /* --- HEADER NAVIGASI --- */
@@ -118,27 +123,69 @@
             transition: .25s;
         }
 
-        .main-nav a:hover {
+        .main-nav a:hover,
+        .main-nav a.active {
             background: var(--accent-red);
             color: white;
         }
 
-        .main-content { 
-            margin-top: 80px; 
-            padding: 2rem 0; 
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem 0;
         }
 
-        .term-card {
+        .history-card {
             background: var(--bg-section);
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .term-card:hover {
+        .history-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .timeline-year {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
         /* --- FOOTER --- */
@@ -275,63 +322,63 @@
             .main-header {
                 padding: 1rem 0;
             }
-            
+
             .logo {
                 font-size: 1.5rem;
             }
-            
+
             .main-nav {
                 display: none;
             }
-            
+
             .mobile-menu-toggle {
                 display: block;
             }
-            
+
             .main-content {
                 margin-top: 70px;
                 padding: 1rem 0;
             }
-            
+
             .container {
                 padding: 0 15px;
             }
-            
+
             h2 {
                 font-size: 1.8rem;
             }
-            
+
             .hero-section {
                 padding: 5rem 0 !important;
             }
-            
+
             .hero-section h1 {
                 font-size: 2.5rem !important;
             }
-            
+
             .hero-section p {
                 font-size: 1.2rem !important;
             }
-            
+
             .features-buttons div {
                 grid-template-columns: 1fr !important;
                 gap: 1rem !important;
             }
-            
+
             .feature-btn {
                 padding: 1rem !important;
                 font-size: 0.9rem !important;
             }
-            
-            .term-card {
-                padding: 1.2rem !important;
+
+            .history-card {
+                padding: 1.5rem !important;
             }
-            
+
             .footer .container > div {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .footer-links {
                 margin-top: 1rem;
             }
@@ -341,26 +388,26 @@
             .hero-section h1 {
                 font-size: 2rem !important;
             }
-            
+
             .hero-section p {
                 font-size: 1rem !important;
             }
-            
+
             .feature-btn {
                 padding: 0.8rem 1.5rem !important;
                 font-size: 0.85rem !important;
             }
-            
-            .term-card {
+
+            .history-card {
                 padding: 1rem !important;
             }
-            
-            .term-card h3 {
-                font-size: 1.1rem;
+
+            .timeline {
+                padding-left: 1.5rem;
             }
-            
-            .term-card p {
-                font-size: 0.9rem;
+
+            .timeline-item {
+                padding-left: 1.5rem;
             }
         }
     </style>
@@ -412,8 +459,8 @@
             <!-- Hero Section -->
             <div class="hero-section" style="text-align: center; padding: 10rem 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 2rem;">
                 <div class="hero-content" style="max-width: 1200px; margin: 0 auto;">
-                    <h1 style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 0.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">KAMUS KOPI</h1>
-                    <p style="font-size: 1.5rem; color: var(--text-light); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Temukan Segala Tentang Dunia Kopi di Rumah Kedua Anda</p>
+                    <h1 style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 0.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">SEJARAH KOPI</h1>
+                    <p style="font-size: 1.5rem; color: var(--text-light); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Perjalanan Panjang Kopi dari Etiopia hingga Dunia</p>
                 </div>
             </div>
 
@@ -428,96 +475,133 @@
                     <a href="roasting.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">METODE ROASTING</a>
                     <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">CARA PENYEDUHAN KOPI</a>
                     <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
-                    <a href="sejarah.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">TENTANG</a>
+                    <a href="sejarah.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">SEJARAH KOPI</a>
                 </div>
             </div>
 
-            <!-- Kamus Kopi Section -->
-            <div class="kamus-section">
-                <h2>Kamus Kopi</h2>
-                <p>Kumpulan istilah kopi yang sering digunakan barista dan pecinta kopi.</p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                    <div class="term-card">
-                        <img src="gambar/espreso.jpg" alt="Espresso" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Espresso</h3>
-                        <p>Minuman kopi pekat yang diseduh dengan tekanan tinggi dari mesin espresso, basis untuk banyak minuman kopi lainnya.</p>
+            <!-- Sejarah Kopi Timeline -->
+            <div class="history-section">
+                <h2>Timeline Sejarah Kopi</h2>
+                <p>Perjalanan kopi dari penemuan hingga menjadi minuman global favorit.</p>
+
+                <div class="timeline" style="margin-top: 3rem;">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Abad ke-9 - Penemuan di Etiopia</div>
+                        <h3>Asal-usul Kopi di Afrika</h3>
+                        <p>Kopi pertama kali ditemukan di dataran tinggi Etiopia sekitar abad ke-9. Legenda mengatakan seorang penggembala kambing bernama Kaldi menemukan efek stimulan biji kopi ketika kambing-kambingnya menjadi sangat energik setelah memakan buah merah yang aneh. Biji kopi awalnya digunakan sebagai makanan oleh suku Oromo di Etiopia.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/latte.jpg" alt="Latte" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Latte</h3>
-                        <p>Espresso dicampur dengan susu steamed dan busa susu tipis di atasnya, sering dengan latte art.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Abad ke-15 - Penyebaran ke Arab</div>
+                        <h3>Kopi Masuk ke Dunia Islam</h3>
+                        <p>Kopi menyebar ke Jazirah Arab melalui pedagang Yaman. Pada abad ke-15, kopi sudah menjadi minuman populer di kota suci Mekah dan Madinah. Orang Arab mulai menanam kopi secara komersial dan mengembangkan metode roasting serta brewing. Kopi menjadi bagian penting dari budaya sosial di dunia Islam.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/crema.jpg" alt="Crema" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Crema</h3>
-                        <p>Lapisan busa keemasan di atas espresso yang menandakan ekstraksi yang baik dari biji kopi segar.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Abad ke-16 - Ekspansi ke Asia</div>
+                        <h3>Penyebaran ke India dan Indonesia</h3>
+                        <p>Babur, pendiri Dinasti Mughal, memperkenalkan kopi ke India pada 1550-an. Dari India, kopi menyebar ke Indonesia melalui pedagang Belanda. Pada 1616, Belanda membawa bibit kopi dari Malabar (India) ke Batavia (Jakarta). Kopi mulai ditanam di Jawa dan menjadi komoditas ekspor penting.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/bari.jpg" alt="Barista" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Barista</h3>
-                        <p>Ahli kopi yang terampil dalam menyiapkan, menyeduh, dan menyajikan minuman kopi berkualitas tinggi.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1616 - Kedatangan ke Indonesia</div>
+                        <h3>Awal Sejarah Kopi Indonesia</h3>
+                        <p>Gubernur Jenderal Jan Pieterszoon Coen membawa bibit kopi pertama ke Indonesia. Kopi ditanam di perkebunan di sekitar Batavia dan Bogor. Pada abad ke-18, Belanda mulai mengembangkan perkebunan kopi secara besar-besaran di Jawa, menggunakan sistem tanam paksa yang dikenal sebagai cultuurstelsel.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/pour.jpg" alt="Pour Over" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Pour Over</h3>
-                        <p>Metode penyeduhan manual di mana air panas dituang secara bertahap melalui bubuk kopi di filter.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1645 - Kopi di Venesia</div>
+                        <h3>Masuknya Kopi ke Eropa</h3>
+                        <p>Kopi pertama kali muncul di Venesia, Italia, dibawa oleh pedagang Venesia dari Konstantinopel. Kedai kopi pertama di Eropa dibuka di Venesia pada 1645. Dari Italia, kopi menyebar ke seluruh Eropa. Pada 1650, kedai kopi pertama di Inggris dibuka di Oxford.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/capucino.jpg" alt="Cappuccino" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Cappuccino</h3>
-                        <p>Minuman espresso dengan steamed milk dan busa susu tebal di atasnya, sering ditaburi dengan bubuk cokelat atau kayu manis.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1670 - Kopi di Paris</div>
+                        <h3>Budaya Kedai Kopi di Eropa</h3>
+                        <p>Kopi tiba di Paris melalui Marseilles. Kedai kopi pertama di Paris dibuka pada 1671. Pada masa Pencerahan, kedai kopi menjadi pusat intelektual dan diskusi politik. Voltaire, Rousseau, dan para filsuf terkenal sering berkumpul di kedai kopi Paris.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/americano.jpg" alt="Americano" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Americano</h3>
-                        <p>Espresso yang dicampur dengan air panas, menciptakan minuman yang mirip dengan drip coffee namun dengan karakter espresso yang kuat.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1690 - Kopi di Amerika</div>
+                        <h3>Penyebaran ke Dunia Baru</h3>
+                        <p>Kopi pertama kali dibawa ke Amerika oleh kolonis Inggris. Pada 1690-an, kedai kopi pertama di New York dibuka. Thomas Jefferson dan Benjamin Franklin adalah penggemar kopi berat. Kopi menjadi minuman nasional Amerika Serikat.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/machiato.jpg" alt="Macchiato" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Macchiato</h3>
-                        <p>Espresso dengan sedikit busa susu di atasnya, memberikan sentuhan creamy pada kekuatan espresso.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1714 - Bibit Kopi ke Brasil</div>
+                        <h3>Awal Industri Kopi Modern</h3>
+                        <p>Francisco de Melo Palheta membawa bibit kopi dari Prancis ke Brasil. Ini menandai awal industri kopi modern. Brasil kemudian menjadi produsen kopi terbesar di dunia. Kopi menjadi komoditas perdagangan internasional yang penting.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/mocha.jpg" alt="Mocha" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Mocha</h3>
-                        <p>Campuran espresso, cokelat, dan steamed milk, menciptakan minuman manis dengan rasa cokelat yang dominan.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1720 - Kopi di Boston</div>
+                        <h3>Revolusi Amerika dan Kopi</h3>
+                        <p>Kopi menjadi minuman favorit para patriot Amerika. "Boston Tea Party" pada 1773 sebenarnya adalah protes terhadap pajak teh Inggris, dan kopi menjadi alternatif. Kopi menjadi simbol kemerdekaan Amerika.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/coldbrew.jpg" alt="Cold Brew" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Cold Brew</h3>
-                        <p>Kopi yang diseduh dengan air dingin selama 12-24 jam, menghasilkan rasa yang lebih halus dan rendah asamitas.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1800-an - Zaman Keemasan</div>
+                        <h3>Industrialisasi dan Globalisasi Kopi</h3>
+                        <p>Revolusi Industri membawa mesin roasting dan brewing otomatis. Kopi menjadi minuman sehari-hari di seluruh dunia. Perkebunan kopi berkembang pesat di Amerika Latin, Afrika, dan Asia. Kopi menjadi salah satu komoditas terpenting dalam perdagangan global.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/cortado.jpg" alt="Cortado" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Cortado</h3>
-                        <p>Espresso yang dicampur dengan jumlah susu yang sama, menciptakan minuman seimbang antara kekuatan dan kelembutan.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1900-an - Inovasi Modern</div>
+                        <h3>Kopi Instan dan Kultur Modern</h3>
+                        <p>Nescafé meluncurkan kopi instan pertama pada 1938. Perang Dunia II membuat kopi menjadi minuman penting untuk tentara. Pasca-perang, budaya kafe berkembang pesat. Espresso machine modern dikembangkan di Italia pada 1940-an.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/flat-white-d8ada0f.jpg" alt="Flat White" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Flat White</h3>
-                        <p>Espresso dengan microfoam milk yang halus, mirip latte namun dengan proporsi espresso yang lebih tinggi.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1970-an - Kopi Specialty</div>
+                        <h3>Revolusi Kopi Specialty</h3>
+                        <p>Konsep "kopi specialty" lahir di Amerika Serikat. Para roaster mulai fokus pada kualitas dan asal-usul biji kopi. Cupping menjadi standar industri. Kopi menjadi minuman premium dengan harga tinggi.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/Ristretto.jpg" alt="Ristretto" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Ristretto</h3>
-                        <p>Shot espresso yang lebih pendek dan pekat, diekstrak dengan volume air yang lebih sedikit untuk rasa yang lebih intens.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000-an - Kopi Craft</div>
+                        <h3>Boom Kedai Kopi Modern</h3>
+                        <p>Revolusi kedai kopi dimulai dengan Starbucks, kemudian diikuti oleh kedai kopi independen. Kopi menjadi bagian dari budaya populer. Third wave coffee movement menekankan kualitas, keberlanjutan, dan pengalaman.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="gambar/singleorigin.jpg" alt="Single Origin" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Single Origin</h3>
-                        <p>Kopi yang berasal dari satu perkebunan atau wilayah tertentu, menampilkan karakter unik dari asal-usulnya.</p>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020-an - Kopi Berkelanjutan</div>
+                        <h3>Masa Depan Kopi</h3>
+                        <p>Fokus pada keberlanjutan lingkungan dan kesejahteraan petani. Inovasi teknologi dalam pertanian kopi. Kopi specialty menjadi mainstream. Indonesia tetap menjadi pemain penting dalam industri kopi global.</p>
                     </div>
-                    <div class="term-card">
-                        <img src="https://via.placeholder.com/300x200/2c2c2c/fff?text=Red+Eye" alt="Red Eye" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Red Eye</h3>
-                        <p>Campuran drip coffee dengan shot espresso, memberikan kekuatan ekstra untuk mengatasi kelelahan.</p>
-                    </div>
-                    <div class="term-card">
-                        <img src="https://via.placeholder.com/300x200/2c2c2c/fff?text=Bulletproof+Coffee" alt="Bulletproof Coffee" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <h3>Bulletproof Coffee</h3>
-                        <p>Kopi yang dicampur dengan mentega dan minyak MCT, populer dalam diet keto dan intermittent fasting.</p>
-                    </div>
-                </div>Baca selengk
+                </div>
+            </div>
+
+            <!-- Additional History Cards -->
+            <div class="history-cards" style="margin-top: 4rem;">
+                <div class="history-card">
+                    <h3>Legenda Kaldi - Penemuan Kopi</h3>
+                    <p>Legenda paling terkenal tentang penemuan kopi berasal dari Etiopia. Kaldi, seorang penggembala kambing, memperhatikan bahwa kambing-kambingnya menjadi sangat energik setelah memakan buah merah dari semak-semak. Ia mencoba buah tersebut dan merasakan efek stimulan yang sama. Ia membawa biji kopi ke biara setempat, di mana para biksu menggunakannya untuk tetap terjaga selama ibadah malam.</p>
+                </div>
+
+                <div class="history-card">
+                    <h3>Kopi dan Islam</h3>
+                    <p>Kopi memiliki hubungan erat dengan dunia Islam. Pada abad ke-15, kopi sudah menjadi minuman populer di Mekah dan Madinah. Namun, ada kontroversi awal karena beberapa ulama menganggap kopi sebagai minuman yang memabukkan. Pada 1511, Sultan Selim I dari Turki Ottoman melarang kopi, tetapi larangan tersebut dicabut setelah penyelidikan menunjukkan kopi tidak memabukkan.</p>
+                </div>
+
+                <div class="history-card">
+                    <h3>Kopi di Indonesia</h3>
+                    <p>Kopi pertama kali dibawa ke Indonesia oleh Belanda pada 1616. Pada abad ke-18, Belanda mengembangkan sistem tanam paksa (cultuurstelsel) untuk produksi kopi. Kopi menjadi komoditas ekspor utama Hindia Belanda. Setelah kemerdekaan, Indonesia menjadi salah satu produsen kopi terbesar di dunia, terkenal dengan kopi robusta dan arabika specialty seperti Kopi Gayo, Mandailing, dan Toraja.</p>
+                </div>
+
+                <div class="history-card">
+                    <h3>Kopi dan Revolusi Industri</h3>
+                    <p>Revolusi Industri di Eropa pada abad ke-19 membawa perubahan besar pada industri kopi. Mesin roasting otomatis dikembangkan, memungkinkan produksi massal. Kopi menjadi minuman sehari-hari bagi kelas pekerja. Kedai kopi menjadi pusat sosial dan intelektual di kota-kota industri.</p>
+                </div>
+
+                <div class="history-card">
+                    <h3>Kopi dalam Perang Dunia</h3>
+                    <p>Selama Perang Dunia I dan II, kopi menjadi minuman penting untuk tentara. Amerika Serikat mengirim jutaan pon kopi ke pasukan sekutu. Kopi membantu menjaga moral dan kewaspadaan tentara. Nescafé dikembangkan khusus untuk kebutuhan militer, yang kemudian menjadi kopi instan komersial pertama.</p>
+                </div>
+
+                <div class="history-card">
+                    <h3>Third Wave Coffee</h3>
+                    <p>Third wave coffee movement dimulai pada 2000-an, menekankan kualitas, keberlanjutan, dan pengalaman. Para roaster specialty fokus pada biji kopi single-origin dengan kualitas tinggi. Kedai kopi independen berkembang pesat, menawarkan pengalaman yang lebih personal dan edukatif. Kopi menjadi minuman premium dengan harga yang lebih tinggi.</p>
+                </div>
             </div>
         </div>
     </main>
