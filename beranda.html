@@ -138,6 +138,52 @@
             transition: 0.3s;
         }
 
+        /* --- TEAM SECTION --- */
+        .team-section {
+            margin-top: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-card {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-gold);
+        }
+
+        .team-id {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
         /* --- FOOTER --- */
         .footer {
             background: var(--bg-section);
@@ -270,6 +316,10 @@
             .highlights-section > div {
                 grid-template-columns: repeat(2, 1fr) !important;
             }
+            
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -333,6 +383,10 @@
                 padding: 1.2rem !important;
             }
             
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
             .footer .container > div {
                 flex-direction: column;
                 text-align: center;
@@ -367,6 +421,16 @@
             
             .article-card p {
                 font-size: 0.9rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .team-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -426,7 +490,7 @@
             <div class="features-buttons" style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: var(--accent-gold); margin-bottom: 2rem;">Konten Utama</h2>
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; justify-content: center; max-width: 1200px; margin: 0 auto;">
-                    <a href="index.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
+                    <a href="beranda.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
                     <a href="kamus.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">KAMUS KOPI</a>
                     <a href="biji.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">JENIS BIJI KOPI</a>
                     <a href="proses.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
@@ -439,22 +503,96 @@
 
             <!-- Highlight Latest Content -->
             <div class="highlights-section">
-                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--accent-gold);">Konten Terbaru</h2>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--accent-gold);">Artikel</h2>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
                     <div class="article-card" style="background: var(--bg-section); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="gambar/biji-arabika.jpg" alt="Biji Kopi Arabika" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                         <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Panduan Memilih Biji Kopi Arabika</h3>
                         <p style="color: var(--text-light); margin-bottom: 1rem;">Pelajari cara memilih biji kopi Arabika berkualitas tinggi untuk penyeduhan sehari-hari.</p>
-                        <a href="#" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
+                        <a href="https://www.kenal.coffee/post/simak-panduan-cara-memilih-biji-kopi-yang-bagus  " style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
                     </div>
                     <div class="article-card" style="background: var(--bg-section); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="gambar/V60-brewing.jpg" alt="V60 Brewing" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                         <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Tips Penyeduhan V60 yang Sempurna</h3>
                         <p style="color: var(--text-light); margin-bottom: 1rem;">Rahasia ekstraksi rasa optimal dengan metode pour-over V60.</p>
-                        <a href="#" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
+                        <a href="https://ottencoffee.co.id/majalah/teknik-kopi-v60-diadaptasi-dari-resep-juara-wbc2022?srsltid=AfmBOoohPvQF-GvtHHPILHpQh6IIzCImPW5mnYemT6ogBGneQBTdiVPK" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
                     </div>
                     <div class="article-card" style="background: var(--bg-section); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="gambar/istilah.jpg" alt="Istilah Barista" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                         <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">Istilah Barista yang Wajib Diketahui</h3>
                         <p style="color: var(--text-light); margin-bottom: 1rem;">Kumpulan istilah kopi yang sering digunakan di kedai kopi.</p>
-                        <a href="#" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
+                        <a href="https://pratter.co.id/76-istilah-di-dalam-dunia-kopi-sesuai-abjad-yang-wajib-kamu-ketahui/" style="color: var(--accent-red); text-decoration: none; font-weight: 500;">Baca Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="team-section">
+                <h2>Kelompok Pengembang</h2>
+                <p>Para mahasiswa yang berkontribusi dalam pengembangan website Second Home</p>
+                <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">Chikal Rafi Setyawan</h3>
+                        <p class="team-id">241102415092</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">M. Zacky Ananda F</h3>
+                        <p class="team-id">241110241515</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">Ferry Setiawan</h3>
+                        <p class="team-id">2411102415006</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">Robi Ghoniyun Karyem</h3>
+                        <p class="team-id">2411102415010</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">M. Ahda Assyifa</h3>
+                        <p class="team-id">2411102415162</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">M. Rangga. A. P</h3>
+                        <p class="team-id">2411102415054</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">M. Taufik Qurrahman</h3>
+                        <p class="team-id">2411102415022</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">Resya Ramadhan</h3>
+                        <p class="team-id">2411102415037</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
+                        </div>
+                        <h3 class="team-name">Fikri Pramudya</h3>
+                        <p class="team-id">2411102415021</p>
                     </div>
                 </div>
             </div>

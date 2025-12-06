@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- VARIABEL WARNA & GLOBAL --- */
@@ -123,18 +124,22 @@
             color: white;
         }
 
-        .main-content { margin-top: 80px; padding: 2rem 0; }
+        .main-content { 
+            margin-top: 80px; 
+            padding: 2rem 0; 
+        }
 
         .bean-card {
             background: var(--bg-section);
             padding: 1.5rem;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .bean-card:hover {
             transform: translateY(-5px);
-            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* --- FOOTER --- */
@@ -175,93 +180,328 @@
         .footer-links a:hover {
             color: var(--accent-gold);
         }
+
+        /* Mobile Menu Styles */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            z-index: 1001;
+            padding: 2rem;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            background-color: var(--accent-red);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 992px) {
+            .features-buttons div {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 1rem 0;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .main-nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .main-content {
+                margin-top: 70px;
+                padding: 1rem 0;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-section {
+                padding: 5rem 0 !important;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .hero-section p {
+                font-size: 1.2rem !important;
+            }
+            
+            .features-buttons div {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .feature-btn {
+                padding: 1rem !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .bean-card {
+                padding: 1.2rem !important;
+            }
+            
+            .footer .container > div {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 2rem !important;
+            }
+            
+            .hero-section p {
+                font-size: 1rem !important;
+            }
+            
+            .feature-btn {
+                padding: 0.8rem 1.5rem !important;
+                font-size: 0.85rem !important;
+            }
+            
+            .bean-card {
+                padding: 1rem !important;
+            }
+            
+            .bean-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .bean-card p {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header class="main-header">
-        <div class="container">
-            <div class="logo-container">
-                <h1 class="logo">SECOND HOME</h1>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#" class="nav-icon"><i class="fas fa-search"></i></a></li>
-                    <li><a href="#" class="nav-icon"><i class="fas fa-bars"></i></a></li>
-                </ul>
-            </nav>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+    <div class="container">
+        <div class="logo-container">
+            <h1 class="logo">SECOND HOME</h1>
         </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <h3 style="color: var(--accent-gold);">Menu</h3>
-            <button class="mobile-menu-close" id="mobileMenuClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <ul>
-            <li><a href="index.html">BERANDA</a></li>
-            <li><a href="kamus.html">KAMUS KOPI</a></li>
-            <li><a href="biji.html">JENIS BIJI KOPI</a></li>
-            <li><a href="proses.html">PROSES PENGOLAHAN</a></li>
-            <li><a href="roasting.html">METODE ROASTING</a></li>
-            <li><a href="seduh.html">METODE PENYEDUHAN</a></li>
-            <li><a href="menu.html">VARIASI MENU KOPI</a></li>
-            <li><a href="tentang.html">TENTANG</a></li>
-            <li><a href="#"><i class="fas fa-search"></i> Cari</a></li>
-        </ul>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="nav-icon"><i class="fas fa-search"></i></a></li>
+                <li><a href="#" class="nav-icon"><i class="fas fa-bars"></i></a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
-    <div class="overlay" id="overlay"></div>
+</header>
 
-    <main class="main-content">
-        <div class="container">
-            <!-- Hero Section -->
-            <div class="hero-section" style="text-align: center; padding: 10rem 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 2rem;">
-                <div class="hero-content" style="max-width: 1200px; margin: 0 auto;">
-                    <h1 style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 0.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">JENIS BIJI KOPI</h1>
-                    <p style="font-size: 1.5rem; color: var(--text-light); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Temukan Segala Tentang Dunia Kopi di Rumah Kedua Anda</p>
-                </div>
-            </div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+        <h3 style="color: var(--accent-gold);">Menu</h3>
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <ul>
+        <li><a href="index.html">BERANDA</a></li>
+        <li><a href="kamus.html">KAMUS KOPI</a></li>
+        <li><a href="biji.html">JENIS BIJI KOPI</a></li>
+        <li><a href="proses.html">PROSES PENGOLAHAN</a></li>
+        <li><a href="roasting.html">METODE ROASTING</a></li>
+        <li><a href="seduh.html">METODE PENYEDUHAN</a></li>
+        <li><a href="menu.html">VARIASI MENU KOPI</a></li>
+        <li><a href="tentang.html">TENTANG</a></li>
+        <li><a href="#"><i class="fas fa-search"></i> Cari</a></li>
+    </ul>
+</div>
+<div class="overlay" id="overlay"></div>
 
-            <!-- Buttons to Main Features -->
-            <div class="features-buttons" style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="color: var(--accent-gold); margin-bottom: 2rem;">Konten Utama</h2>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; justify-content: center; max-width: 1200px; margin: 0 auto;">
-                    <a href="index.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
-                    <a href="kamus.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">KAMUS KOPI</a>
-                    <a href="proses.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">JENIS BIJI KOPI</a>
-                    <a href="roasting.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
-                    <a href="seduh.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">METODE ROASTING</a>
-                    <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">CARA PENYEDUHAN KOPI</a>
-                    <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
-                    <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">TENTANG</a>
-                </div>
-            </div>
 <main class="main-content">
     <div class="container">
-        <h2>Jenis Biji Kopi</h2>
-        <p>Arabika, Robusta, Liberika, dan Excelsa beserta karakteristiknya.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-            <div class="bean-card">
-                <h3>Arabica</h3>
-                <p>Biji kopi premium dengan rasa asam yang seimbang, aroma floral, dan kompleksitas tinggi. Tumbuh di ketinggian tinggi.</p>
+        <!-- Hero Section -->
+        <div class="hero-section" style="text-align: center; padding: 10rem 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 2rem;">
+            <div class="hero-content" style="max-width: 1200px; margin: 0 auto;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 0.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">JENIS BIJI KOPI</h1>
+                <p style="font-size: 1.5rem; color: var(--text-light); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Temukan Segala Tentang Dunia Kopi di Rumah Kedua Anda</p>
             </div>
-            <div class="bean-card">
-                <h3>Robusta</h3>
-                <p>Biji kopi yang lebih kuat, pahit, dengan kadar kafein tinggi. Digunakan dalam espresso blends dan instant coffee.</p>
+        </div>
+
+        <!-- Buttons to Main Features -->
+        <div class="features-buttons" style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="color: var(--accent-gold); margin-bottom: 2rem;">Konten Utama</h2>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; justify-content: center; max-width: 1200px; margin: 0 auto;">
+                <a href="beranda.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
+                <a href="kamus.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">KAMUS KOPI</a>
+                <a href="biji.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">JENIS BIJI KOPI</a>
+                <a href="proses.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
+                <a href="roasting.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">METODE ROASTING</a>
+                <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">CARA PENYEDUHAN KOPI</a>
+                <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
+                <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">TENTANG</a>
             </div>
-            <div class="bean-card">
-                <h3>Liberica</h3>
-                <p>Biji kopi langka dengan rasa smoky dan fruity, tahan penyakit, populer di Asia Tenggara termasuk Indonesia.</p>
-            </div>
-            <div class="bean-card">
-                <h3>Excelsa</h3>
-                <p>Varian Liberica dengan rasa tart dan dark chocolate, menambahkan kompleksitas pada blends kopi.</p>
+        </div>
+
+        <!-- Jenis Biji Kopi Section -->
+        <div class="biji-section">
+            <h2>Jenis Biji Kopi</h2>
+            <p>Arabika, Robusta, Liberika, dan Excelsa beserta karakteristiknya.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div class="bean-card">
+                    <img src="gambar/biji-arabika.jpg" alt="Arabica" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Arabica</h3>
+                    <p>Biji kopi premium dengan rasa asam yang seimbang, aroma floral, dan kompleksitas tinggi. Tumbuh di ketinggian tinggi.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/robusta.jpg" alt="Robusta" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Robusta</h3>
+                    <p>Biji kopi yang lebih kuat, pahit, dengan kadar kafein tinggi. Digunakan dalam espresso blends dan instant coffee.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/liberika.jpg" alt="Liberica" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Liberica</h3>
+                    <p>Biji kopi langka dengan rasa smoky dan fruity, tahan penyakit, populer di Asia Tenggara termasuk Indonesia.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/excelsa.jpeg" alt="Excelsa" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Excelsa</h3>
+                    <p>Varian Liberica dengan rasa tart dan dark chocolate, menambahkan kompleksitas pada blends kopi.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/gayo.jpeg" alt="Kopi Gayo" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Gayo</h3>
+                    <p>Kopi Arabika asli Indonesia dari Aceh dengan rasa seimbang, asamitas sedang, dan aroma floral yang kuat. Salah satu kopi terbaik dunia.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/mandailing.jpg" alt="Kopi Mandailing" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Mandailing</h3>
+                    <p>Kopi Arabika dari Sumatera Utara dengan body penuh, rasa cokelat, dan aftertaste panjang. Dikenal dengan kompleksitas rasanya.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/toraja.jpg" alt="Kopi Toraja" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Toraja</h3>
+                    <p>Kopi Arabika dari Sulawesi Selatan dengan rasa fruity, asamitas cerah, dan aroma floral. Memiliki kompleksitas tinggi dan aftertaste bersih.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/java.jpg" alt="Kopi Java" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Java</h3>
+                    <p>Kopi Arabika dari Jawa dengan rasa balanced, aroma rempah, dan kompleksitas tinggi. Salah satu kopi tertua di Indonesia.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/bajawaa.jpg" alt="Kopi Flores Bajawa" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Flores Bajawa</h3>
+                    <p>Kopi Arabika dari Flores dengan rasa fruity, asamitas tinggi, dan aroma floral yang kuat. Memiliki karakteristik unik dari tanah vulkanik.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/kintamani.jpeg" alt="Kopi Kintamani" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Kintamani</h3>
+                    <p>Kopi Arabika dari Bali dengan rasa fruity, asamitas cerah, dan kompleksitas tinggi. Tumbuh di dataran tinggi dengan tanah vulkanik.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/ijen.jpg" alt="Kopi Ijen Raung" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Ijen Raung</h3>
+                    <p>Kopi Arabika dari Jawa Timur dengan rasa balanced, aroma rempah, dan aftertaste panjang. Tumbuh di sekitar Gunung Raung.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/wamena.jpg" alt="Kopi Wamena" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Wamena</h3>
+                    <p>Kopi Arabika dari Papua dengan rasa fruity, asamitas tinggi, dan kompleksitas tinggi. Memiliki karakteristik unik dari dataran tinggi Papua.</p>
+                </div>
+                <div class="bean-card">
+                    <img src="jenisbiji/luwak.png" alt="Kopi Luwak" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                    <h3>Kopi Luwak</h3>
+                    <p>Kopi premium dari biji yang dicerna luwak, menghasilkan rasa unik dengan catatan fruity dan rendah kafein. Salah satu kopi termahal dunia.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -282,6 +522,42 @@
         </div>
     </div>
 </footer>
+
+<script>
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const overlay = document.getElementById('overlay');
+
+    mobileMenuToggle.addEventListener('click', function() {
+        mobileMenu.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+    });
+
+    mobileMenuClose.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Enable scrolling when menu is closed
+    });
+
+    overlay.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Enable scrolling when menu is closed
+    });
+
+    // Close menu when clicking on a link
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling when menu is closed
+        });
+    });
+</script>
 
 </body>
 </html>
