@@ -181,6 +181,126 @@
             color: var(--accent-gold);
         }
 
+        /* Search Bar Styles */
+        .search-bar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: var(--primary-dark);
+            padding: 1rem;
+            display: none;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            background: var(--bg-section);
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(244, 244, 244, 0.7);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background: var(--primary-dark);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu li {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--accent-red);
+        }
+
+        /* Loading Animation Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(21, 21, 21, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .loading-spinner {
+            text-align: center;
+            color: var(--accent-gold);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(233, 184, 114, 0.3);
+            border-top: 4px solid var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-spinner p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
         /* Mobile Menu Styles */
         .mobile-menu-toggle {
             display: none;
@@ -383,7 +503,36 @@
                 <i class="fas fa-bars"></i>
             </button>
         </div>
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
     </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+        <input type="text" id="searchInput" placeholder="Cari di Second Home...">
+        <button id="searchClose"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <ul>
+            <li><a href="index.html">BERANDA</a></li>
+            <li><a href="kamus.html">KAMUS KOPI</a></li>
+            <li><a href="biji.html">JENIS BIJI KOPI</a></li>
+            <li><a href="proses.html">PROSES PENGOLAHAN</a></li>
+            <li><a href="roasting.html">METODE ROASTING</a></li>
+            <li><a href="seduh.html">METODE PENYEDUHAN</a></li>
+            <li><a href="menu.html">VARIASI MENU KOPI</a></li>
+            <li><a href="sejarah.html">SEJARAH KOPI</a></li>
+            <li><a href="tentang.html">TENTANG</a></li>
+        </ul>
+    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
@@ -427,9 +576,9 @@
                     <a href="proses.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
                     <a href="roasting.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">METODE ROASTING</a>
                     <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">CARA PENYEDUHAN KOPI</a>
-                <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
-                <a href="sejarah.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">SEJARAH KOPI</a>
-                <a href="tentang.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">TENTANG</a>
+                    <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
+                    <a href="sejarah.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">SEJARAH KOPI</a>
+                    <!-- <a href="tentang.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">TENTANG</a> -->
                 </div>
             </div>
 
@@ -477,13 +626,8 @@
         <div class="container">
             <div>
                 <div class="footer-info">
-                    <h3>Second Home</h3>
-                    <p>Pusat edukasi kopi untuk pecinta kopi Indonesia. © 2023 Second Home. All rights reserved.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Contact</a>
+                    <h3>SECOND HOME</h3>
+                    <p>Ruang belajar kopi untuk semua pecinta kopi Indonesia. Hadir sebagai teman setia perjalanan kopimu.</p>
                 </div>
             </div>
         </div>
@@ -521,6 +665,78 @@
                 mobileMenu.classList.remove('active');
                 overlay.classList.remove('active');
                 document.body.style.overflow = 'auto'; // Enable scrolling when menu is closed
+            });
+        });
+
+        // Search Icon Functionality
+        const searchIcon = document.querySelector('.nav-icon[href="#"] .fa-search').parentElement;
+        const searchBar = document.getElementById('searchBar');
+        const searchInput = document.getElementById('searchInput');
+        const searchClose = document.getElementById('searchClose');
+
+        if (searchIcon) {
+            searchIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                searchBar.style.display = searchBar.style.display === 'block' ? 'none' : 'block';
+                if (searchBar.style.display === 'block') {
+                    searchInput.focus();
+                }
+            });
+        }
+
+        if (searchClose) {
+            searchClose.addEventListener('click', function() {
+                searchBar.style.display = 'none';
+            });
+        }
+
+        // Bars Icon Functionality (Dropdown Menu)
+        const barsIcon = document.querySelector('.nav-icon[href="#"] .fa-bars').parentElement;
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        if (barsIcon) {
+            barsIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (barsIcon && !barsIcon.contains(e.target) && dropdownMenu && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+            if (searchIcon && !searchIcon.contains(e.target) && searchBar && !searchBar.contains(e.target)) {
+                searchBar.style.display = 'none';
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (searchBar) searchBar.style.display = 'none';
+                if (dropdownMenu) dropdownMenu.style.display = 'none';
+            }
+        });
+
+        // Loading Animation for Navigation
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const allLinks = document.querySelectorAll('a[href]');
+
+        allLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#' && !href.startsWith('http') && !href.startsWith('mailto:')) {
+                    e.preventDefault();
+                    if (loadingOverlay) {
+                        loadingOverlay.style.display = 'flex';
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 1500);
+                    } else {
+                        window.location.href = href;
+                    }
+                }
             });
         });
     </script>

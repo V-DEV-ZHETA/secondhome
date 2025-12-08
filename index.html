@@ -138,6 +138,62 @@
             transition: 0.3s;
         }
 
+        /* --- ABOUT SECTION --- */
+        .about-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-section);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-red));
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .about-highlight {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .about-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
         /* --- TEAM SECTION --- */
         .team-section {
             margin-top: 4rem;
@@ -221,6 +277,126 @@
 
         .footer-links a:hover {
             color: var(--accent-gold);
+        }
+
+        /* Search Bar Styles */
+        .search-bar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: var(--primary-dark);
+            padding: 1rem;
+            display: none;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            background: var(--bg-section);
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(244, 244, 244, 0.7);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background: var(--primary-dark);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu li {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--accent-red);
+        }
+
+        /* Loading Animation Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(21, 21, 21, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .loading-spinner {
+            text-align: center;
+            color: var(--accent-gold);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(233, 184, 114, 0.3);
+            border-top: 4px solid var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-spinner p {
+            font-size: 1.2rem;
+            margin: 0;
         }
 
         /* Mobile Menu Styles */
@@ -444,15 +620,44 @@
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#" class="nav-icon"><i class="fas fa-search"></i></a></li>
-                    <li><a href="#" class="nav-icon"><i class="fas fa-bars"></i></a></li>
+                    <li><a href="#" class="nav-icon" id="searchIcon"><i class="fas fa-search"></i></a></li>
+                    <!-- <li><a href="#" class="nav-icon" id="barsIcon"><i class="fas fa-bars"></i></a></li> -->
                 </ul>
             </nav>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
     </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+        <input type="text" id="searchInput" placeholder="Cari di Second Home...">
+        <button id="searchClose"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <ul>
+            <li><a href="index.html">BERANDA</a></li>
+            <li><a href="kamus.html">KAMUS KOPI</a></li>
+            <li><a href="biji.html">JENIS BIJI KOPI</a></li>
+            <li><a href="proses.html">PROSES PENGOLAHAN</a></li>
+            <li><a href="roasting.html">METODE ROASTING</a></li>
+            <li><a href="seduh.html">METODE PENYEDUHAN</a></li>
+            <li><a href="menu.html">VARIASI MENU KOPI</a></li>
+            <li><a href="sejarah.html">SEJARAH KOPI</a></li>
+            <li><a href="tentang.html">TENTANG</a></li>
+        </ul>
+    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
@@ -491,7 +696,7 @@
             <div class="features-buttons" style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: var(--accent-gold); margin-bottom: 2rem;">Konten Utama</h2>
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; justify-content: center; max-width: 1200px; margin: 0 auto;">
-                    <a href="beranda.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
+                    <a href="index.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">BERANDA</a>
                     <a href="kamus.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">KAMUS KOPI</a>
                     <a href="biji.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">JENIS BIJI KOPI</a>
                     <a href="proses.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">PROSES PENGOLAHAN</a>
@@ -499,7 +704,7 @@
                     <a href="seduh.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">CARA PENYEDUHAN KOPI</a>
                     <a href="menu.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">VARIASI MENU KOPI</a>
                     <a href="sejarah.html" class="feature-btn" style="background: var(--accent-red); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(166, 61, 64, 0.3);">SEJARAH KOPI</a>
-                    <a href="tentang.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">TENTANG</a>
+                    <!-- <a href="tentang.html" class="feature-btn" style="background: var(--accent-gold); color: var(--primary-dark); padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(233, 184, 114, 0.3);">TENTANG</a> -->
                 </div>
             </div>
 
@@ -528,71 +733,62 @@
                 </div>
             </div>
 
+            <!-- About Section -->
+            <div class="about-section">
+                <h2>Tentang Second Home</h2>
+                <div class="about-container">
+                    <div class="about-content">
+                        <!-- <i class="fas fa-coffee about-icon"></i> -->
+                        <div class="about-text">
+                            <p>
+                                <span class="about-highlight">Second Home</span> adalah ruang belajar kopi yang hangat dan bersahabat—tempat di mana setiap pecinta kopi bisa merasa pulang. Kami hadir dengan semangat untuk berbagi segala hal tentang kopi Indonesia: mulai dari sejarahnya yang kaya, ragam biji dan karakter rasanya, proses pengolahan yang unik, sampai teknik menyeduh yang bisa membuat secangkir kopi terasa jauh lebih istimewa.
+                            </p>
+                            <p>
+                                Dengan penjelasan yang mudah dipahami dan konten yang dirancang untuk semua level penikmat kopi, Second Home menjadi teman perjalanan yang setia bagi siapa pun yang ingin menyelami keindahan dan kompleksitas kopi Nusantara.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Team Section -->
             <div class="team-section">
                 <h2>Kelompok Pengembang</h2>
                 <p>Para mahasiswa yang berkontribusi dalam pengembangan website Second Home</p>
                 <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">Chikal Rafi Setyawan</h3>
                         <p class="team-id">241102415092</p>
                     </div>
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">M. Zacky Ananda F</h3>
                         <p class="team-id">241110241515</p>
                     </div>
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">Ferry Setiawan</h3>
                         <p class="team-id">2411102415006</p>
                     </div>
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">Robi Ghoniyun Karyem</h3>
                         <p class="team-id">2411102415010</p>
                     </div>
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">M. Ahda Assyifa</h3>
                         <p class="team-id">2411102415162</p>
                     </div>
-                    <div class="team-card">Baca selengk
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
+                    <div class="team-card">
                         <h3 class="team-name">M. Rangga. A. P</h3>
                         <p class="team-id">2411102415054</p>
                     </div>
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">M. Taufik Qurrahman</h3>
                         <p class="team-id">2411102415022</p>
                     </div>
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">Resya Ramadhan</h3>
                         <p class="team-id">2411102415037</p>
                     </div>
                     <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="https://via.placeholder.com/80x80/2c2c2c/fff?text=Avatar" alt="Team Avatar">
-                        </div>
                         <h3 class="team-name">Fikri Pramudya</h3>
                         <p class="team-id">2411102415021</p>
                     </div>
@@ -606,13 +802,8 @@
         <div class="container">
             <div>
                 <div class="footer-info">
-                    <h3>Second Home</h3>
-                    <p>Pusat edukasi kopi untuk pecinta kopi Indonesia. © 2025 Second Home. All rights reserved.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Contact</a>
+                    <h3>SECOND HOME</h3>
+                    <p>Ruang belajar kopi untuk semua pecinta kopi Indonesia. Hadir sebagai teman setia perjalanan kopimu.</p>
                 </div>
             </div>
         </div>
@@ -651,6 +842,51 @@
                 overlay.classList.remove('active');
                 document.body.style.overflow = 'auto'; // Enable scrolling when menu is closed
             });
+        });
+
+        // Search Icon Functionality
+        const searchIcon = document.getElementById('searchIcon');
+        const searchBar = document.getElementById('searchBar');
+        const searchInput = document.getElementById('searchInput');
+        const searchClose = document.getElementById('searchClose');
+
+        searchIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchBar.style.display = searchBar.style.display === 'block' ? 'none' : 'block';
+            if (searchBar.style.display === 'block') {
+                searchInput.focus();
+            }
+        });
+
+        searchClose.addEventListener('click', function() {
+            searchBar.style.display = 'none';
+        });
+
+        // Bars Icon Functionality (Dropdown Menu)
+        const barsIcon = document.getElementById('barsIcon');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        barsIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!barsIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+            if (!searchIcon.contains(e.target) && !searchBar.contains(e.target)) {
+                searchBar.style.display = 'none';
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchBar.style.display = 'none';
+                dropdownMenu.style.display = 'none';
+            }
         });
     </script>
 </body>
